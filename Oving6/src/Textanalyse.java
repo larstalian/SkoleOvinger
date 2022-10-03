@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Textanalyse {
 
@@ -39,7 +40,7 @@ public class Textanalyse {
 
     public void antallTegn() {
         for (int i = 0; i < tekst.length(); i++) {
-            int bokstavIndex = alfabet.indexOf(tekst.toLowerCase().charAt(i)); //lager en variabel der man sammenligner en char i teksten med en char i alfabetet.
+            int bokstavIndex = alfabet.indexOf(tekst.toLowerCase().charAt(i)); //int som returnerer indexen til karakteren i teksten på posisjon i
             if (bokstavIndex == -1) { // legger till tegn på 29.
                 antallTegn[29]++;
             } else {
@@ -48,35 +49,38 @@ public class Textanalyse {
         }
     }
 
-    public void antallSpesifikkBokstav(String bokstav) {
+    public void antallSpesifikkBokstav() {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Velg bokstav du vil finne: ");
+        String bokstav = in.next();
         boolean fantBokstav = false;
-        int bokstaven = alfabet.indexOf(bokstav.toLowerCase());
+        int bokstaven = alfabet.indexOf(bokstav.toLowerCase()); //indeksen til den valgte bokstaven
         for (int i = 0; i < tekst.length(); i++) {
-            int bokstavIndex = alfabet.indexOf(tekst.toLowerCase().charAt(i));
-            if (bokstavIndex == bokstaven) {
+            int bokstavIndex = alfabet.indexOf(tekst.toLowerCase().charAt(i)); //indexen til bokstaven på posisjon i
+            if (bokstavIndex == bokstaven) { //hvis indexen er lik indexen til bokstaven
                 System.out.println("\nBokstaven " + bokstav + " forekommer " + antallTegn[bokstavIndex] + " ganger i teksten");
                 fantBokstav = true;
                 break;
             }
         }
-        if (!fantBokstav) {
+        if (!fantBokstav) { //hvis bokstaven ikke finnes i teksten
             System.out.println("Bokstaven finnes ikke i teksten");
         }
     }
 
     public void forekommerOftest() {
+        //denne metoden bruker en løkke til å gå igjennom antallTegn og finner den høyeste verdien. Deretter finner bokstaven på den plassen.
         int hoyest = -1;
         StringBuilder hoyestBokstav = new StringBuilder();
         for (int i = 0; i < (antallTegn.length - 1); i++) {
             if (antallTegn[i] > hoyest) {
                 hoyest = antallTegn[i];
                 hoyestBokstav = new StringBuilder(String.valueOf(alfabet.charAt(i)));
-            } else if (antallTegn[i] == hoyest) {
+            } else if (antallTegn[i] == hoyest) { //finnes det flere bokstaver med samme verdi legges de til i Stringbuilderen
                 hoyestBokstav.append(", ").append(alfabet.charAt(i));
             }
         }
-        System.out.println( "Bokstaven(e) som forekommer oftest er \"" + hoyestBokstav + "\" (" + hoyest + " ganger)");
+        System.out.println("Bokstaven(e) som forekommer oftest er \"" + hoyestBokstav + "\" (" + hoyest + " ganger)");
     }
-//        System.out.println("Bokstaven " + Arrays.stream(antallTegn).    + " forekommer oftest og forekommer " + antallTegn[alfabet.indexOf(tekst.toLowerCase().charAt(max))] + " antall ganger");
 }
 
