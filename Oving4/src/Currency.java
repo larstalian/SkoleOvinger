@@ -5,11 +5,11 @@ public class Currency {
         this.currencyValue = currencyValue;
     }
 
-    public double convertToNok(double exchangeInput) {
-        return exchangeInput * currencyValue;
+    public double convertToNok(double convertInput) {
+        return convertInput * currencyValue;
     }
 
-    public double convertFromNok(double exchangeInput) {
-       return exchangeInput / currencyValue;
+    public double convertFromNok(double convertInput) {
+       return convertInput / currencyValue;
     }
 }

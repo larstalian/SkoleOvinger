@@ -23,41 +23,42 @@ public class Main {
             } else {
                 throw new IllegalStateException("Unexpected value: " + toNok);
             }
-            System.out.println("Choose a currency: \n 1.USD \n 2.EUR \n 3.SEK");
+            System.out.println("\rChoose a currency: \n 1.USD \n 2.EUR \n 3.SEK");
             int currencyType = in.nextInt();
             if (currencyType == 4) System.exit(0);
 
             System.out.println("How much money do you wish to convert?");
-            double exchangeInput = in.nextDouble();
+            double convertInput = in.nextDouble();
 
-            if (exchangeInput == 4) System.exit(0);
+            if (convertInput == 4) System.exit(0);
 
+            String output = ("Equals: ");
             switch (currencyType) {
                 case 1:
                     if (toNokBool) {
-                        System.out.println(currencyUsd.convertToNok(exchangeInput) + " NOK");
+                        System.out.println(output + currencyUsd.convertToNok(convertInput) + " NOK");
                     } else {
-                        System.out.println(currencyUsd.convertFromNok(exchangeInput) + " USD");
+                        System.out.println(output + currencyUsd.convertFromNok(convertInput) + " USD");
                     }
                     break;
                 case 2:
                     if (toNokBool) {
-                        System.out.println(currencyEur.convertToNok(exchangeInput) + " NOK");
+                        System.out.println(output + currencyEur.convertToNok(convertInput) + " NOK");
                     } else {
-                        System.out.println(currencyEur.convertFromNok(exchangeInput) + " EUR");
+                        System.out.println(output + currencyEur.convertFromNok(convertInput) + " EUR");
                     }
                     break;
                 case 3:
                     if (toNokBool) {
-                        System.out.println(currencySek.convertToNok(exchangeInput) + " NOK");
+                        System.out.println(output + currencySek.convertToNok(convertInput) + " NOK");
                     } else {
-                        System.out.println(currencySek.convertFromNok(exchangeInput) + " SEK");
+                        System.out.println(output + currencySek.convertFromNok(convertInput) + " SEK");
                     }
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + currencyType);
             }
-            System.out.println("\n You can choose to convert again ( to quit type 4)");
+            System.out.println("\nYou can choose to convert again (to quit type 4)");
         }
     }
 }

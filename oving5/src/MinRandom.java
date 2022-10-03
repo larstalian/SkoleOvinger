@@ -1,15 +1,15 @@
 import java.util.Random;
 import java.util.Scanner;
 
-public class MiniRandom {
+public class MinRandom {
+
+    static Random random = new Random();
 
     public static int nextWholeNumber(int under, int over) {
-        Random random = new Random(); //objekt av random klassen
         return random.nextInt(under, over);
     }
 
     public static double nextDecimal(double under, double over) {
-        Random random = new Random(); //objekt av random klassen
         return random.nextDouble(under, over); //
     }
 
@@ -32,7 +32,5 @@ public class MiniRandom {
         System.out.println(testDouble2);
         System.out.println(testDouble3);
         System.out.println(testDouble4);
-
-
     }
 }

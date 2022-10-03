@@ -1,7 +1,7 @@
 public class Oppgave1 {
 
-    private final double numerator;
-    private final double denominator;
+    private double numerator;
+    private double denominator;
     private String result;
 
 
@@ -34,6 +34,7 @@ public class Oppgave1 {
         double newDenominator = (denominator * d);
         result = (newNumerator + "/" + newDenominator);
     }
+
 
     public void sub(double n, double d) {
         double newNumerator = (numerator * d - denominator * n);
