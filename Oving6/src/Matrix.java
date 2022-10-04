@@ -52,7 +52,7 @@ public record Matrix(double[][] data) {
             return c;
 
         } catch (Exception e) {
-            System.out.println("Error!!!");
+            System.out.println("Something went wrong!");
             return new double[0][0];
         }
     }
