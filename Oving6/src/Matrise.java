@@ -1,12 +1,9 @@
-public class Matrise {
+public record Matrise(double[][] data) {
 
-    public Matrise() {
-    }
-
-    public double[][] mul(double[][] a, double[][] b) {
+    public double[][] mul(double[][] b) {
 
         try {
-
+            double[][] a = data();
             double[][] c = new double[3][3];
             for (int i = 0; i < a.length; i++) {
                 for (int j = 0; j < b.length; j++) {
@@ -23,10 +20,10 @@ public class Matrise {
         }
     }
 
-    public double[][] sum(double[][] a, double[][] b) {
+    public double[][] sum(double[][] b) {
 
         try {
-
+            double[][] a = data();
             double[][] c = new double[3][3];
             for (int i = 0; i < a.length; i++) {
                 for (int j = 0; j < b.length; j++) {
@@ -40,7 +37,6 @@ public class Matrise {
             System.out.println("Error!!!");
             return new double[0][0];
         }
-
     }
 
     public double[][] transpose(double[][] a) {
@@ -51,7 +47,6 @@ public class Matrise {
             for (int i = 0; i < a.length; i++) {
                 for (int j = 0; j < a[0].length; j++) {
                     c[i][j] = a[j][i];
-
                 }
             }
             return c;
@@ -60,7 +55,6 @@ public class Matrise {
             System.out.println("Error!!!");
             return new double[0][0];
         }
-
     }
 
     public static void main(String[] args) {
@@ -68,26 +62,29 @@ public class Matrise {
         double[][] a = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
         double[][] b = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 
-        Matrise matrise = new Matrise();
+        Matrise matrix1 = new Matrise(a);
 
-        double[][] g = matrise.mul(a, b);
-        double[][] p = matrise.sum(a, b);
-        double[][] t = matrise.transpose(a);
+        double[][] g = matrix1.mul(b);
+        double[][] p = matrix1.sum(b);
+        double[][] t = matrix1.transpose(a);
 
+        System.out.println("Matrix 1 and 2 multiplied:");
         for (double[] value : g) {
             for (double i : value) {
                 System.out.print(i + "  ");
             }
             System.out.println();
         }
-        System.out.println("\n\n");
+        System.out.println("\n\nMatrix 1 and 2 sum:");
+
         for (double[] value : p) {
             for (double i : value) {
                 System.out.print(i + "  ");
             }
             System.out.println();
         }
-        System.out.println("\n\n");
+        System.out.println("\n\nTransposed Matrix:");
+
         for (double[] ints : t) {
             for (double anInt : ints) {
                 System.out.print(anInt + "  ");
@@ -96,5 +93,4 @@ public class Matrise {
         }
 
     }
-
 }
