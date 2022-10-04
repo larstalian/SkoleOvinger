@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.stream.Stream;
 
+//Record class. Constructor is inside here somehow
 public record NyString(String text) {
 
     //get methods
@@ -17,7 +18,7 @@ public record NyString(String text) {
 
     //print method
     public void printArray(String[] array) {
-        //Prints each instance individually without fuss
+        //Prints each array instance individually without fuss
         Stream.of(array).forEach(System.out::print);
     }
 }

@@ -1,12 +1,13 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
+//Record class. Constructor is inside here somehow
 public record TextProcessing(String text) {
 
-    //Constructor
     public String[] getWords() {
         return text().split(" ");
     }
+
 
     //Get methods
     public String[] getPeriods() {
@@ -30,10 +31,12 @@ public record TextProcessing(String text) {
     }
 
     public String getTextUppercase() {
+        //Gets the text in uppercase
         return text().toUpperCase();
     }
 
     public String changeWordsInText(String wordInput, String wordInputReplace) {
+        //Changes a existing word in the text with the input
         return text().replaceAll(wordInput, wordInputReplace);
     }
 
@@ -47,7 +50,7 @@ public record TextProcessing(String text) {
     }
 
     public void methodPrinter(double d) {
-        System.out.printf("%.2f ", d);
+        System.out.printf("%.2f", d );
     }
 
     private static void client() {
@@ -60,9 +63,12 @@ public record TextProcessing(String text) {
 
         System.out.println("\nThe average word length is ");
         text.methodPrinter(text.getAverageWordLength());
+        System.out.println(" characters per word");
 
         System.out.println("\n\nThe average period length is ");
         text.methodPrinter(text.getAveragePeriod());
+        System.out.println(" words per period");
+
         System.out.println("\n\nYou can now replace a word in the text. Enter the word you wish to replace");
         String wordInput = in.nextLine();
         System.out.println("Enter the word you to replace " + wordInput + " with");
