@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public record Matrix(double[][] data) {
 
     public double[][] mul(double[][] b) {
@@ -69,28 +71,22 @@ public record Matrix(double[][] data) {
         double[][] t = matrix1.transpose(a);
 
         System.out.println("Matrix 1 and 2 multiplied:");
-        for (double[] value : g) {
-            for (double i : value) {
-                System.out.print(i + "  ");
-            }
+        Arrays.stream(g).forEach(value -> {
+            Arrays.stream(value).mapToObj(i -> i + "  ").forEach(System.out::print);
             System.out.println();
-        }
+        });
         System.out.println("\n\nMatrix 1 and 2 sum:");
 
-        for (double[] value : p) {
-            for (double i : value) {
-                System.out.print(i + "  ");
-            }
+        Arrays.stream(p).forEach(value -> {
+            Arrays.stream(value).mapToObj(i -> i + "  ").forEach(System.out::print);
             System.out.println();
-        }
+        });
         System.out.println("\n\nTransposed Matrix:");
 
-        for (double[] ints : t) {
-            for (double anInt : ints) {
-                System.out.print(anInt + "  ");
-            }
+        Arrays.stream(t).forEach(ints -> {
+            Arrays.stream(ints).mapToObj(anInt -> anInt + "  ").forEach(System.out::print);
             System.out.println();
-        }
+        });
 
     }
 }
