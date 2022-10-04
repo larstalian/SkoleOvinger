@@ -1,7 +1,7 @@
 class Matrise {
     private final double[][] verdier;
 
-    public Matrise(int antallRader, int antallKolonner) {
+    public Matrise(int antallRader, int antallKolonner) { //konstruktør som setter størrelsen på matrisene
         verdier = new double[antallRader][];
         for (int i = 0; i < antallRader; i++) {
             verdier[i] = new double[antallKolonner];
@@ -12,53 +12,54 @@ class Matrise {
     }
 
     //get metoder
-    public int getAntallRader() {
+    public int getAntallRader() { //henter antall rader
         return verdier.length;
     }
 
-    public int getAntallKolonner() {
+    public int getAntallKolonner() { //henter antall kolonner
         return verdier[0].length;
     }
 
-    public double getVerdi(int rad, int kolonne) throws ArrayIndexOutOfBoundsException {
+    public double getVerdi(int rad, int kolonne) throws ArrayIndexOutOfBoundsException { //henter verdiene til kolonne/radene
         return verdier[rad][kolonne];
     }
 
     //setmetoder
-    public void setVerdi(int rad, int kolonne, double verdi) throws ArrayIndexOutOfBoundsException {
+    public void setVerdi(int rad, int kolonne, double verdi) throws ArrayIndexOutOfBoundsException { //setter verdiene til matrisen
         verdier[rad][kolonne] = verdi;
     }
 
     public Matrise sum(Matrise matrise) {
-        if (matrise.getAntallRader() != getAntallRader() || matrise.getAntallKolonner() != getAntallKolonner()) { //sjekker om matrisen stemmer
+        if (matrise.getAntallRader() == getAntallRader() && matrise.getAntallKolonner() == getAntallKolonner()) {//sjekker om matrisen stemmer med verdiene
+            Matrise sum = new Matrise(getAntallRader(), getAntallKolonner()); //summerer 2 matriser
+            for (int i = 0; i < getAntallRader(); i++) {
+                for (int j = 0; j < getAntallKolonner(); j++) {
+                    sum.setVerdi(i, j, verdier[i][j] + matrise.getVerdi(i, j));
+                }
+            }
+            return sum;
+        } else {
             return null;
         }
 
-        Matrise sum = new Matrise(getAntallRader(), getAntallKolonner());
-        for (int i = 0; i < getAntallRader(); i++) {
-            for (int j = 0; j < getAntallKolonner(); j++) {
-                sum.setVerdi(i, j, verdier[i][j] + matrise.getVerdi(i, j));
-            }
-        }
-        return sum;
     }
 
     //metoder
-    public Matrise mul(Matrise matrise) {
-        if (matrise.getAntallRader() != getAntallKolonner()) {
-            return null;
-        }
+    public Matrise mul(Matrise matrise) { //mulipliserer matrisene
+        if (matrise.getAntallRader() == getAntallKolonner()) {
+            Matrise sum = new Matrise(getAntallRader(), matrise.getAntallKolonner());
 
-        Matrise sum = new Matrise(getAntallRader(), matrise.getAntallKolonner());
-
-        for (int i = 0; i < getAntallRader(); i++) {
-            for (int j = 0; j < getAntallKolonner(); j++) {
-                for (int k = 0; k < getAntallKolonner(); k++) {
-                    sum.setVerdi(i, j, sum.getVerdi(i, j) + verdier[i][k] * matrise.getVerdi(k, j));
+            for (int i = 0; i < getAntallRader(); i++) {
+                for (int j = 0; j < getAntallKolonner(); j++) {
+                    for (int k = 0; k < getAntallKolonner(); k++) {
+                        sum.setVerdi(i, j, sum.getVerdi(i, j) + verdier[i][k] * matrise.getVerdi(k, j)); //setter ny verdi lik
+                    }
                 }
             }
+            return sum;
+        } else { //hvis matrisen ikke er gyldig
+            return null;
         }
-        return sum;
     }
 
     public Matrise transponer() {
@@ -71,11 +72,12 @@ class Matrise {
         return resultat;
     }
 
-    public String toString() {
+    public String toString() { //gjør om matrisen til en string
         StringBuilder str = new StringBuilder();
         for (int i = 0; i < getAntallRader(); i++) {
             for (int j = 0; j < getAntallKolonner(); j++) {
-                str.append(verdier[i][j]).append("\t");
+                str.append(verdier[i][j]);
+                str.append("\t");
             }
             str.append("\n");
         }
@@ -101,12 +103,12 @@ class Matrise {
         System.out.println("Matrise 2:\n" + matrise2);
 
         Matrise sum = matrise1.sum(matrise2);
-        System.out.println(sum != null ? "Matrisesum:\n" + sum : "\nIkke mulig å summere matrisene.");
+        System.out.println(sum != null ? "\nMatrisesum:\n" + sum : "\nIkke mulig å summere matrisene.\n");
 
         Matrise produkt = matrise1.mul(matrise2);
-        System.out.println(produkt != null ? "Matriseprodukt:\n" + produkt : "\nIkke mulig å multiplisere matrisene.");
+        System.out.println(produkt != null ? "\nMatriseprodukt:\n" + produkt : "\nIkke mulig å multiplisere matrisene.");
 
         Matrise transponert = matrise1.transponer();
-        System.out.println("Matrise 1 transponert:\n" + transponert.toString());
+        System.out.println("\nMatrise 1 transponert:\n" + transponert.toString());
     }
 }

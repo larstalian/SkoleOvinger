@@ -1,27 +1,19 @@
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-public class NyString {
-    private final String text;
-
-    public NyString(String text) {
-        this.text = text;
-    }
-
-    public String getText() {
-        return text;
-    }
-
+public record NyString(String text) {
+    //get methods
     public String[] getInitials() {
-        String[] arrayNoWhitespace = getText().split(" ");
+        String[] arrayNoWhitespace = text().split(" ");
         return Arrays.stream(arrayNoWhitespace).map(s -> s.substring(0, 1)).toArray(String[]::new);
     }
 
-    public void printArray(String[] array) {
-        Stream.of(array).forEach(System.out::print);
+    public String[] getTextWithRemovedCharacter(String inputRemoveCharacter) {
+        return text().split(inputRemoveCharacter);
     }
 
-    public String[] removeCharacter(String inputRemoveCharacter) {
-        return getText().split(inputRemoveCharacter);
+    //print method
+    public void printArray(String[] array) {
+        Stream.of(array).forEach(System.out::print);
     }
 }

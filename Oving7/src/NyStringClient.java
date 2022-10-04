@@ -14,7 +14,7 @@ public class NyStringClient {
         String inputRemoveCharacter = in.next();
 
         System.out.println("Text with " + inputRemoveCharacter + " removed:");
-        text.printArray(text.removeCharacter(inputRemoveCharacter));
+        text.printArray(text.getTextWithRemovedCharacter(inputRemoveCharacter));
     }
 
     public static void main(String[] args) {
