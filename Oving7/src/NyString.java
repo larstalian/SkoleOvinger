@@ -2,6 +2,7 @@ import java.util.Arrays;
 import java.util.stream.Stream;
 
 public record NyString(String text) {
+
     //get methods
     public String[] getInitials() {
         String[] arrayNoWhitespace = text().split(" ");
@@ -9,7 +10,7 @@ public record NyString(String text) {
     }
 
     public String[] getTextWithRemovedCharacter(String inputRemoveCharacter) {
-        return text().split(inputRemoveCharacter);
+        return new String[]{text().replace(inputRemoveCharacter, "").replace(inputRemoveCharacter.toUpperCase(), "")};
     }
 
     //print method
