@@ -1,4 +1,4 @@
-public record Matrise(double[][] data) {
+public record Matrix(double[][] data) {
 
     public double[][] mul(double[][] b) {
 
@@ -34,7 +34,7 @@ public record Matrise(double[][] data) {
             return c;
 
         } catch (Exception e) {
-            System.out.println("Error!!!");
+            System.out.println("Something went wrong!");
             return new double[0][0];
         }
     }
@@ -42,7 +42,7 @@ public record Matrise(double[][] data) {
     public double[][] transpose(double[][] a) {
 
         try {
-            double[][] c = new double[3][3]; // 3 rows and 3 columns
+            double[][] c = new double[3][3];
 
             for (int i = 0; i < a.length; i++) {
                 for (int j = 0; j < a[0].length; j++) {
@@ -62,7 +62,7 @@ public record Matrise(double[][] data) {
         double[][] a = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
         double[][] b = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 
-        Matrise matrix1 = new Matrise(a);
+        Matrix matrix1 = new Matrix(a);
 
         double[][] g = matrix1.mul(b);
         double[][] p = matrix1.sum(b);
