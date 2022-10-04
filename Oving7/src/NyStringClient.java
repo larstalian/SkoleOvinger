@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class NyStringClient {
+    //client method
     private static void client() {
         Scanner in = new Scanner(System.in);
 
