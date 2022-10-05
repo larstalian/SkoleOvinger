@@ -1,16 +1,35 @@
 import java.util.Arrays;
+import java.util.Objects;
+import java.util.stream.IntStream;
 
-public record Matrix(double[][] data) {
+public final class Matrix {
+    private final double[][] data;
+    private final int columns;
+    private final int rows;
 
-    public double[][] mul(double[][] b) {
+    public Matrix(int rows, int columns) {
+        this.rows = rows;
+        this.columns = columns;
+        data = new double[rows][columns];
+    }
+
+    public Matrix(double[][] data) {
+        this.rows = data.length;
+        this.columns = data[0].length;
+        this.data = new double[rows][columns];
+        IntStream.range(0, rows).forEach(i -> System.arraycopy(data[i], 0, this.data[i], 0, columns));
+
+    }
+
+    public Matrix mul(Matrix b) {
 
         try {
-            double[][] a = data();
-            double[][] c = new double[3][3];
-            for (int i = 0; i < a.length; i++) {
-                for (int j = 0; j < b.length; j++) {
+            Matrix a = this;
+            Matrix c = new Matrix(rows, columns);
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < columns; j++) {
                     for (int k = 0; k < 3; k++) {
-                        c[i][j] += a[i][k] * b[k][j];
+                        c.data[i][j] += a.data[i][k] * b.data[k][j];
                     }
                 }
             }
@@ -18,75 +37,65 @@ public record Matrix(double[][] data) {
 
         } catch (Exception e) {
             System.out.println("Something went wrong");
-            return new double[0][0];
+            return null;
         }
     }
 
-    public double[][] sum(double[][] b) {
+    public Matrix sum(Matrix b) {
 
         try {
-            double[][] a = data();
-            double[][] c = new double[3][3];
-            for (int i = 0; i < a.length; i++) {
-                for (int j = 0; j < b.length; j++) {
-                    c[i][j] = a[i][j] + b[i][j];
+            Matrix a = this;
+            Matrix c = new Matrix(rows, columns);
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < columns; j++) {
+                    c.data[i][j] = a.data[i][j] + b.data[i][j];
 
                 }
             }
             return c;
 
         } catch (Exception e) {
-            System.out.println("Something went wrong!");
-            return new double[0][0];
+            System.out.println(e);
+            return null;
         }
     }
 
-    public double[][] transpose(double[][] a) {
+    public Matrix transpose() {
 
         try {
-            double[][] c = new double[3][3];
+            Matrix a = this;
+            Matrix c = this;
 
-            for (int i = 0; i < a.length; i++) {
-                for (int j = 0; j < a[0].length; j++) {
-                    c[i][j] = a[j][i];
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < columns; j++) {
+                    c.data[i][j] = a.data[j][i];
                 }
             }
             return c;
 
         } catch (Exception e) {
-            System.out.println("Something went wrong!");
-            return new double[0][0];
+            System.out.println(e);
+            return null;
         }
+    }
+
+    public String toString() {
+        StringBuilder output = new StringBuilder("\n");
+        for (double[] row : data) {
+            output.append(Arrays.toString(row)).append("\n");
+        }
+        return output.toString();
     }
 
     public static void main(String[] args) {
-
         double[][] a = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-        double[][] b = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-
-        Matrix matrix1 = new Matrix(a);
-
-        double[][] g = matrix1.mul(b);
-        double[][] p = matrix1.sum(b);
-        double[][] t = matrix1.transpose(a);
-
-        System.out.println("Matrix 1 and 2 multiplied:");
-        Arrays.stream(g).forEach(value -> {
-            Arrays.stream(value).mapToObj(i -> i + "  ").forEach(System.out::print);
-            System.out.println();
-        });
-        System.out.println("\n\nMatrix 1 and 2 sum:");
-
-        Arrays.stream(p).forEach(value -> {
-            Arrays.stream(value).mapToObj(i -> i + "  ").forEach(System.out::print);
-            System.out.println();
-        });
-        System.out.println("\n\nTransposed Matrix:");
-
-        Arrays.stream(t).forEach(ints -> {
-            Arrays.stream(ints).mapToObj(anInt -> anInt + "  ").forEach(System.out::print);
-            System.out.println();
-        });
+        double[][] b = {{1, 2, 7}, {3, 5, 6}, {1, 4, 0}};
+        Matrix matrixB = new Matrix(b);
+        Matrix matrixA = new Matrix(a);
+        Matrix matrixC = matrixA.mul(matrixB);
+        System.out.println(matrixC);
+        System.out.println(Objects.requireNonNull(matrixA.sum(matrixB)));
+        System.out.println(matrixB.transpose());
 
     }
 }
