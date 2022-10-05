@@ -12,6 +12,8 @@ public class Employee {
     //class attributes
     private final Person person;
     private final int employmentNumber;
+
+    //can change with set methods
     private int employmentYear;
     private double monthlyGross;
     private double taxRate;
@@ -34,11 +36,11 @@ public class Employee {
     }
 
     public String getFullName() {
-        return person.getSurname() + ", " + person.getName();
+        return person.surname() + ", " + person.name();
     }
 
     public int getAge() {
-        return Calendar.getInstance().get(Calendar.YEAR) - person.getBirthYear();
+        return Calendar.getInstance().get(Calendar.YEAR) - person.birthYear();
     }
 
     public int getYearsOfEmployment() {
