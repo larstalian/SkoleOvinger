@@ -1,4 +1,4 @@
-public class Person {
+public final class Person {
     public Person(String name, String surname, int birthYear) {
         Person.name = name;
         Person.surname = surname;
