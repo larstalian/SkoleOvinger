@@ -8,7 +8,6 @@ public record TextProcessing(String text) {
         return text().split(" ");
     }
 
-
     //Get methods
     public String[] getPeriods() {
         return text().split("[?:!.]+");
@@ -50,7 +49,7 @@ public record TextProcessing(String text) {
     }
 
     public void methodPrinter(double d) {
-        System.out.printf("%.2f", d );
+        System.out.printf("%.2f", d);
     }
 
     private static void client() {
