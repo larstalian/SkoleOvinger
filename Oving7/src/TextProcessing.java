@@ -35,7 +35,7 @@ public record TextProcessing(String text) {
     }
 
     public String changeWordsInText(String wordInput, String wordInputReplace) {
-        //Changes a existing word in the text with the input
+        //Changes an existing word in the text with the input
         return text().replaceAll(wordInput, wordInputReplace);
     }
 
