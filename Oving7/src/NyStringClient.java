@@ -8,14 +8,14 @@ public class NyStringClient {
         System.out.println("\nThis program returns a text's initials and removes a chosen character from the text\nPlease enter a text:");
         String textInput = in.nextLine();
 
-        NyString text = new NyString(textInput);
-        text.printArray(text.getInitials());
+        NewString text = new NewString(textInput);
+        text.toString(text.getInitials());
 
         System.out.println("\n\nEnter the character you wish to remove ");
         String inputRemoveCharacter = in.next();
 
         System.out.println("Text with " + inputRemoveCharacter + " removed:");
-        text.printArray(text.getTextWithRemovedCharacter(inputRemoveCharacter));
+        text.toString(text.getTextWithRemovedCharacter(inputRemoveCharacter));
     }
 
     public static void main(String[] args) {

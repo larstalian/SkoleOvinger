@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+/**
+ * Class that represents a client.
+ */
 public class Client {
     private static String taxToString(final double d) {
         return d * 100 + "%";
@@ -14,12 +17,17 @@ public class Client {
                 4. Check if you have been employed for more than x years
                 5. exit""");
     }
-
     public static void main(String[] args) {
         Person person = new Person("Erik", "Skjellevik", 2001);
-        Employee employee = new Employee(person, 2468, 2022, 2000, 0.00);
-        System.out.println("This program shows your person and employment information. " + "The program lets you change our employment information.\n");
-        System.out.println("Name: " + employee.getFullName() + "\nAge: " + employee.getAge() + "\nEmployment number: " + employee.getEmploymentNumber() + "\nEmployed since: " + employee.getEmploymentYear() + "\nMonthly gross salary: " + employee.getMonthlyGross() + "kr" + "\nYearly gross salary: " + employee.getGrossSalary() + "kr" + "\nTax rate: " + taxToString(employee.getTaxRate()) + "\nYearly tax: " + employee.getTaxPerYear() + "kr");
+        Employee employee = new Employee(person, 1, 2010, 50000, 0.31);
+        System.out.println("This program shows your person and employment information. " +
+                "The program lets you change our employment information.\n");
+
+        System.out.println("Name: " + employee.getFullName() + "\nAge: " + employee.getAge() +
+                "\nEmployment number: " + employee.getEmploymentNumber() + "\nEmployed since: " +
+                employee.getEmploymentYear() + "\nMonthly gross salary: " + employee.getMonthlyGross() + "kr" +
+                "\nYearly gross salary: " + employee.getGrossSalary() + "kr" + "\nTax rate: " +
+                taxToString(employee.getTaxRate()) + "\nYearly tax: " + employee.getTaxPerYear() + "kr");
 
         boolean run = true;
         while (run) {

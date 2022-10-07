@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
-
+//Les på aggregering, komposisjon og dyp kopi
 public class AssignmentOverview {
     private List<Student> students = new ArrayList<>();
     private int numberOfStudents = 0;

@@ -1,6 +1,10 @@
 import java.util.Scanner;
 
+/**
+ * Klasse.
+ */
 public class TekstanalyseKlient {
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         boolean run = true;

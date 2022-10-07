@@ -9,6 +9,17 @@ public class Employee {
     private double monthlyGross;
     private double taxRate;
 
+    /**
+     *
+     *
+     * @param person Person object
+     * @param employmentNumber Employment number
+     * @param employmentYear Employment year
+     * @param monthlyGross Monthly gross
+     * @param taxRate Tax rate
+     *
+     *
+     */
     public Employee(Person person, int employmentNumber, int employmentYear, double monthlyGross, double taxRate) {
         this.person = person;
         this.employmentNumber = employmentNumber;
@@ -22,8 +33,17 @@ public class Employee {
         return monthlyGross;
     }
 
+    public void setMonthlyGross(double monthlyGross) {
+        this.monthlyGross = monthlyGross;
+    }
+
     public double getTaxRate() {
         return taxRate;
+    }
+
+    //set methods
+    public void setTaxRate(double taxRate) {
+        this.taxRate = taxRate;
     }
 
     public int getEmploymentNumber() {
@@ -32,6 +52,10 @@ public class Employee {
 
     public int getEmploymentYear() {
         return employmentYear;
+    }
+
+    public void setEmploymentYear(int employmentYear) {
+        this.employmentYear = employmentYear;
     }
 
     public String getFullName() {
@@ -60,19 +84,6 @@ public class Employee {
 
     public boolean getEmployedForXYearsBool(int y) {
         return y > getYearsOfEmployment();
-    }
-
-    //set methods
-    public void setTaxRate(double taxRate) {
-        this.taxRate = taxRate;
-    }
-
-    public void setEmploymentYear(int employmentYear) {
-        this.employmentYear = employmentYear;
-    }
-
-    public void setMonthlyGross(double monthlyGross) {
-        this.monthlyGross = monthlyGross;
     }
 }
 
