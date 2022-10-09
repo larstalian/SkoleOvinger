@@ -21,6 +21,8 @@ public class AssignmentOverview {
 
     /**
      * The main method.
+     * A simple client which uses the methods in
+     * the student class and this class.
      *
      * @param args main.
      */
