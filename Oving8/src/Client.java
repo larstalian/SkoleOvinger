@@ -18,8 +18,8 @@ public class Client {
                 5. exit""");
     }
     public static void main(String[] args) {
-        Person person = new Person("Erik", "Skjellevik", 2001);
-        Employee employee = new Employee(person, 1, 2010, 50000, 0.31);
+        Person person = new Person("Aase", "Bredeli", 2000);
+        Employee employee = new Employee(person, 1, 2020, 5000, 0.15);
         System.out.println("This program shows your person and employment information. " +
                 "The program lets you change our employment information.\n");
 

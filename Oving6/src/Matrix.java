@@ -97,5 +97,6 @@ public final class Matrix {
         System.out.println(Objects.requireNonNull(matrixA.sum(matrixB)));
         System.out.println(matrixB.transpose());
 
+
     }
 }
