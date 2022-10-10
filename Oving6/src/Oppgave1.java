@@ -1,8 +1,13 @@
 public class Oppgave1 {
-  static int[] amount = new int[10]; // creates an array named amount
-  static java.util.Random random = new java.util.Random(); // Creates the 'random' object
+  int[] amount = new int[10]; // creates an array named amount
+  java.util.Random random = new java.util.Random(); // Creates the 'random' object
 
-  public static void generator() {
+  public static void main(String[] args) {
+    Oppgave1 run = new Oppgave1();
+    run.generator();
+  }
+
+  public void generator() {
 
     for (int i = 0; i < 10000; i++) {
       int number = random.nextInt(10); // generates new number between 1 and 10
@@ -12,9 +17,5 @@ public class Oppgave1 {
       System.out.println("Number of occasions of number " + i + ":");
       System.out.println(amount[i] + "\n");
     }
-  }
-
-  public static void main(String[] args) {
-    generator();
   }
 }
