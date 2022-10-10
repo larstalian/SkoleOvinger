@@ -1,7 +1,7 @@
 public record Event(
-    String eventID,
+    String eventId,
     String eventName,
     String eventLocation,
     String eventOrganizer,
     String eventType,
-    int eventDate) {}
+    String eventDate) {}
