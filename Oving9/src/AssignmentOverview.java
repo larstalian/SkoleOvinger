@@ -2,7 +2,10 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
-/** The AssignmentOverview class. */
+/**
+ * The AssignmentOverview class. Contains the client, list of students and methods to register
+ * students and view/edit their approved assignments
+ */
 public class AssignmentOverview {
 
   private final ArrayList<Student> students;
