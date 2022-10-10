@@ -21,6 +21,8 @@ public class AssignmentOverview {
 
     /**
      * The main method.
+     * A simple client which uses the methods in
+     * the student class and this class.
      *
      * @param args main.
      */
@@ -114,9 +116,9 @@ public class AssignmentOverview {
     }
 
     /**
-     * Gets the student from the students array list.
+     * Get-method for this student from the students array list.
      *
-     * @param studentName The students name
+     * @param studentName This students name
      * @return the student object that matches the student name input
      */
     public Student getStudentFromArray(String studentName) {
@@ -127,7 +129,7 @@ public class AssignmentOverview {
     }
 
     /**
-     * Get method for finding the number of students.
+     * Get-method for finding the number of students.
      *
      * @return the number of students.
      */
@@ -138,8 +140,9 @@ public class AssignmentOverview {
 
     /**
      * Method for registering a new student.
+     * Uses the studentExists help method.
      *
-     * @param name                        The students name
+     * @param name                        This students name
      * @param numberOfApprovedAssignments The number of approved assignments
      */
     public void registerNewStudent(String name, int numberOfApprovedAssignments) {
@@ -158,7 +161,7 @@ public class AssignmentOverview {
     /**
      * A help method to check if a student already exists.
      *
-     * @param name The students name
+     * @param name This students name
      * @return true if the student already exists
      */
     public boolean studentExists(String name) {
@@ -173,8 +176,8 @@ public class AssignmentOverview {
     }
 
     /**
-     * A help method to find the student object
-     * in the student array list using the input String for name.
+     * A help method to find the student object in
+     * the student array list using the input String for name.
      *
      * @param name The input String for name
      * @return the position of the Student object that matches the input String

@@ -17,7 +17,7 @@ public final class Student {
     }
 
     /**
-     * Get student name method.
+     * Get-method for student name
      *
      * @return Returns this students name.
      */
@@ -26,7 +26,7 @@ public final class Student {
     }
 
     /**
-     * Get the number of approved assignments.
+     * Get-method for the number of approved assignments.
      *
      * @return Returns the number of approved assignments
      */
@@ -35,7 +35,7 @@ public final class Student {
     }
 
     /**
-     * Increases the number of approved assignments for this student.
+     * Method for increasing the number of approved assignments for this student.
      *
      * @param increase The increase of approved assignments
      */
