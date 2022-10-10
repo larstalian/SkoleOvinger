@@ -1,12 +1,33 @@
 import java.util.ArrayList;
-import java.util.Objects;
+import java.util.Comparator;
 
 public class EventRegister {
 
-  private ArrayList<Event> events;
+  private final ArrayList<Event> events;
+  public Comparator<Event> eventSortLocation =
+      (o1, o2) -> {
+        String eventLocation1 = o1.eventLocation().toUpperCase();
+        String eventLocation2 = o2.eventLocation().toUpperCase();
+
+        return eventLocation1.compareTo(eventLocation2);
+      };
+  public Comparator<Event> eventSortType =
+      (o1, o2) -> {
+        String eventType1 = o1.eventType().toUpperCase();
+        String eventType2 = o2.eventType().toUpperCase();
+
+        return eventType1.compareTo(eventType2);
+      };
+  public Comparator<Event> eventSortDate =
+      (o1, o2) -> {
+        String evenTime1 = o1.eventDate();
+        String eventTime2 = o2.eventDate();
+
+        return evenTime1.compareTo(eventTime2);
+      };
 
   public EventRegister() {
-    ArrayList<Event> events;
+    events = new ArrayList<>();
   }
 
   public void registerNewEvent(
@@ -28,8 +49,8 @@ public class EventRegister {
 
   public boolean eventExists(String eventId) {
     boolean b = true;
-    for (Event value : events) {
-      if (Objects.equals(value.eventId(), eventId)) {
+    for (Event event : events) {
+      if (event.eventId().equals(eventId)) {
         b = false;
         break;
       }
@@ -60,25 +81,50 @@ public class EventRegister {
 
   public ArrayList<Event> allEventsOnDate(String eventDate) {
     ArrayList<Event> newList = new ArrayList<>();
-    eventDate = eventDate.substring(0, eventDate.length() - 2);
     for (Event event : events) {
-      if (event.eventDate().substring(0, eventDate.length() - 2).equals(eventDate.substring(0, eventDate.length() - 2))) {
+      if (event
+          .eventDate()
+          .substring(0, eventDate.length() - 2)
+          .equals(eventDate.substring(0, eventDate.length() - 2))) {
         newList.add(event);
+      }
     }
     return newList;
   }
 
-  public Event allEventsInTimeFrame() {
-    // Å finne alle arrangementer innenfor et tidsintervall gitt ved to datoer. Listen skal
-    // være sortert på tid.
-    return null;
+  public ArrayList<Event> allEventsInTimeFrame(int eventDateStart, int eventDateEnd) {
+    ArrayList<Event> newList = new ArrayList<>();
+    for (int i = 0; i < eventDateEnd; i++) {
+      Event event = events.get(i);
+      if (Integer.parseInt(event.eventDate()) > eventDateStart) {
+        newList.add(event);
+      }
+    }
+    return newList;
   }
 
   public ArrayList<Event> newEventList() {
-    // Å lage lister over alle arrangementer, sortert etter henholdsvis sted, type og
-    // tidspunkt.
+
     return null;
   }
 
-  // Lag et menystyrt klientprogram.
+  public String toString() {
+    StringBuilder s = new StringBuilder();
+    for (Event event : events) {
+      s.append("EventID: ")
+              .append(event.eventId())
+          .append(", Event name: ")
+          .append(event.eventName())
+          .append(", Event Location: ")
+          .append(event.eventLocation())
+          .append(", Event Organizer: ")
+          .append(event.eventOrganizer())
+          .append(", Event Type: ")
+          .append(event.eventType())
+          .append(", Event Date: ")
+          .append(event.eventDate())
+          .append("\n\n");
+    }
+    return s.toString();
+  }
 }
