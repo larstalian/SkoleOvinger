@@ -10,6 +10,7 @@ public class EventRegister {
 
   public void registerNewEvent() {
     // Å registrere et nytt arrangement
+
   }
 
   public Event allEventsOnLocation() {
