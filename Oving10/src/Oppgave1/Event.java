@@ -5,7 +5,7 @@ package Oppgave1;
  * constructor and get-methods of an immutable class.
  *
  * @param eventId The unique event id
- * @param eventName The event name
+ * @param eventName The event menuName
  * @param eventLocation The event location
  * @param eventOrganizer The event organizer
  * @param eventType The event type

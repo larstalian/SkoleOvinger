@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 /**
- * The Oppgave1.EventRegister class contains the variable 'events' and 3 comparators used to sort the events
- * list by location, type and date/time. The comparators are lambda expressions which compare each
- * objects location to each other. Used with the .sort in the printEventsComparator method it prints
- * the event arraylist using the string builder.
+ * The Oppgave1.EventRegister class contains the variable 'events' and 3 comparators used to sort
+ * the events list by location, type and date/time. The comparators are lambda expressions which
+ * compare each objects location to each other. Used with the .sort in the printEventsComparator
+ * method it prints the event arraylist using the string builder.
  */
 public class EventRegister {
 
@@ -60,7 +60,7 @@ public class EventRegister {
    * to the arraylist 'events'.
    *
    * @param eventId The unique event id
-   * @param eventName The event name
+   * @param eventName The event menuName
    * @param eventLocation The event location
    * @param eventOrganizer The event organizer
    * @param eventType The event type
@@ -102,8 +102,8 @@ public class EventRegister {
   }
 
   /**
-   * Finds all events on the provided location. The method creates a new arraylist of type Oppgave1.Event and
-   * adds only the events with locations that matches the given location.
+   * Finds all events on the provided location. The method creates a new arraylist of type
+   * Oppgave1.Event and adds only the events with locations that matches the given location.
    *
    * @param eventLocation The given location.
    * @return a new arraylist containing only the events with the given location
@@ -119,8 +119,8 @@ public class EventRegister {
   }
 
   /**
-   * Method to find all events on the given date. The method creates a new arraylist of type Oppgave1.Event
-   * and adds only the events with the date that matches the given date.
+   * Method to find all events on the given date. The method creates a new arraylist of type
+   * Oppgave1.Event and adds only the events with the date that matches the given date.
    *
    * @param findOnThisDate the given date
    * @return a new arraylist containing only the events with the given date
@@ -155,8 +155,8 @@ public class EventRegister {
   }
 
   /**
-   * Method to print a given arraylist of type Oppgave1.Event if the arraylist is not empty. Uses the
-   * 'stringBuilder' method to build the String.
+   * Method to print a given arraylist of type Oppgave1.Event if the arraylist is not empty. Uses
+   * the 'stringBuilder' method to build the String.
    *
    * @param l The given arraylist
    */
@@ -189,7 +189,7 @@ public class EventRegister {
     for (Event event : events) {
       s.append("\nEventID: ")
           .append(event.eventId())
-          .append("\nOppgave1.Event name: ")
+          .append("\nOppgave1.Event menuName: ")
           .append(event.eventName())
           .append("\nOppgave1.Event Location: ")
           .append(event.eventLocation())

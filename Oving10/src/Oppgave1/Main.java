@@ -26,7 +26,7 @@ public class Main {
           System.out.println("Oppgave1.Event ID:");
           String eventId = in.next();
 
-          System.out.println("Oppgave1.Event name:");
+          System.out.println("Oppgave1.Event menuName:");
           String eventName = in.next();
 
           System.out.println("Oppgave1.Event Location:");
@@ -116,7 +116,7 @@ public class Main {
   }
 
   /** Client menu method. */
-  public static void menu() {
+  private static void menu() {
     System.out.println(
         """
             \nMake a choice:
