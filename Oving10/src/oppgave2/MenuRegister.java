@@ -1,12 +1,15 @@
-package Oppgave2;
+package oppgave2;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The MenuRegister class contains the variables for the arraylists allMenus and AllDishes. The
+ * variables are created in the constructor.
+ */
 public class MenuRegister {
   private final ArrayList<Menu> allMenus;
   private final ArrayList<Dish> allDishes;
-
   Scanner in = new Scanner(System.in);
 
   public MenuRegister() {
@@ -14,6 +17,12 @@ public class MenuRegister {
     allDishes = new ArrayList<>();
   }
 
+  /**
+   * Method for registering a new menu. If a menu with the given menu name does not already exist,
+   * the menu object is added to the allMenus arraylist. After choosing the menu name, the user can
+   * add any number of registered dishes. Uses the menuExists, stringBuilderDishes and findDish
+   * methods.
+   */
   public void registerNewMenu() {
     System.out.println("Enter the name of the menu you wish to create:");
     String menuName = in.next();
@@ -68,6 +77,10 @@ public class MenuRegister {
     return b;
   }
 
+  /**
+   * Method to register a new dish. If a dish with the given name does not already exist, the dish
+   * object is added to the allDishes arraylist. Uses the dishExists method.
+   */
   public void registerNewDish() {
     System.out.println("Enter dish name:");
     Scanner in = new Scanner(System.in);
@@ -89,6 +102,12 @@ public class MenuRegister {
     }
   }
 
+  /**
+   * Method to find a dish in the allDishes arraylist.
+   *
+   * @param dishName The dish name
+   * @return the dish object with the matching dish name
+   */
   public Dish findDish(String dishName) {
     for (Dish dish : allDishes) {
       if (dishName.equalsIgnoreCase(dish.dishName())) {
@@ -98,6 +117,12 @@ public class MenuRegister {
     return null;
   }
 
+  /**
+   * Method to check if the dish already exists.
+   *
+   * @param dishName The dish name
+   * @return true if the dish already exists
+   */
   public boolean dishExists(String dishName) {
     boolean b = false;
     for (Dish dish : allDishes) {
@@ -109,6 +134,12 @@ public class MenuRegister {
     return b;
   }
 
+  /**
+   * Method to build a string out of an arraylist of type Dish.
+   *
+   * @param dishes The arraylist of type Dish
+   * @return the string.
+   */
   public StringBuilder stringBuilderDishes(ArrayList<Dish> dishes) {
     StringBuilder s = new StringBuilder();
     if (dishes.isEmpty()) {
@@ -126,6 +157,12 @@ public class MenuRegister {
     return s;
   }
 
+  /**
+   * Method to build a string out of an arraylist of type Menu.
+   *
+   * @param menus The menu arraylist
+   * @return the string
+   */
   public StringBuilder stringBuilderMenus(ArrayList<Menu> menus) {
     StringBuilder s = new StringBuilder();
     for (Menu menu : menus) {
@@ -137,6 +174,11 @@ public class MenuRegister {
     return s;
   }
 
+  /**
+   * Method to find all menus with the total price less than x.
+   *
+   * @return the new arraylist of type Menu
+   */
   public ArrayList<Menu> findMenusTotPrice() {
     System.out.println("Enter the total price: ");
     int totalPrice = in.nextInt();
@@ -157,6 +199,11 @@ public class MenuRegister {
     return newList;
   }
 
+  /**
+   * Method to find all dishes by their dish type.
+   *
+   * @return the new arraylist of type Dish
+   */
   public ArrayList<Dish> findDishByType() {
     System.out.println("Enter the type: (Appetizer, Main, Dessert)");
     String dishType = in.next();

@@ -1,8 +1,14 @@
-package Oppgave2;
+package oppgave2;
 
 import java.util.Scanner;
 
-public class Main {
+/** The client class. */
+public class Client {
+  /**
+   * The main method.
+   *
+   * @param args main
+   */
   public static void main(String[] args) {
     System.out.println(
         "This is a program for registering Menus and registering dishes to those Menus");
@@ -30,6 +36,7 @@ public class Main {
         case 5 -> System.out.println(run.stringBuilderMenus(run.findMenusTotPrice()));
 
         case 6 -> programRun = false;
+        default -> throw new IllegalStateException("Unexpected value: " + choice);
       }
     }
   }
