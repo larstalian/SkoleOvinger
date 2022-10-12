@@ -1,8 +1,8 @@
 package oppgave1;
 
 /**
- * The record for Oppgave1.Event. The record represents the immutable class Oppgave1.Event. It contains the variables,
- * constructor and get-methods of an immutable class.
+ * The record for Oppgave1.Event. The record represents the immutable class Oppgave1.Event. It
+ * contains the variables, constructor and get-methods of an immutable class.
  *
  * @param eventId The unique event id
  * @param eventName The event menuName
