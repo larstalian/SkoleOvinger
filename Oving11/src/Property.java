@@ -1,5 +1,3 @@
-package Oppgave1;
-
 /**
  * A record class containing the variables and constructor for creating a property object. The
  * property object is created in the 'PropertyRegistry' class through the method

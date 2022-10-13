@@ -1,5 +1,3 @@
-package Oppgave1;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -105,6 +103,7 @@ public class PropertyRegistry {
   public ArrayList<Property> getProperties() {
     return properties;
   }
+
   /** Method to find the average area of all properties registered. */
   public void averageAreaOfAllProperties() {
     double average = 0;

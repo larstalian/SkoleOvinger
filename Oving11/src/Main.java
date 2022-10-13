@@ -1,5 +1,3 @@
-package Oppgave1;
-
 import java.util.Scanner;
 
 /** The main class. */
