@@ -6,6 +6,7 @@ package Oppgave1;
  * 'registerNewProperty'. The record is immutable.
  *
  * @param municipalityName Number of the municipality
+ * @param municipalityNumber Name of the municipality
  * @param lotNumber The lot number
  * @param sectionNumber The section number
  * @param propertyName Name of the property, if any.
@@ -14,6 +15,7 @@ package Oppgave1;
  */
 public record Property(
     String municipalityName,
+    String municipalityNumber,
     String lotNumber,
     String sectionNumber,
     String propertyName,
@@ -29,11 +31,13 @@ public record Property(
 
     return "Property:\n"
         + "Kommunenummer-gnr/bnr: "
-        + municipalityName
+        + municipalityNumber
         + "-"
         + lotNumber
         + "/"
         + sectionNumber
+        + "  Municipality name: "
+        + municipalityName
         + "  Property name: "
         + propertyName
         + "  Area: "

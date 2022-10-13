@@ -11,11 +11,29 @@ import java.util.Scanner;
  */
 public class PropertyRegistry {
   private final ArrayList<Property> properties;
-
   Scanner in = new Scanner(System.in);
 
   public PropertyRegistry() {
     properties = new ArrayList<>();
+  }
+
+  /**
+   * Method to find all properties with a given lot number.
+   *
+   * @return an array list containing the properties with the matching lot number
+   */
+  public ArrayList<Property> allPropertiesWithLotNumberX() {
+    ArrayList<Property> newList = new ArrayList<>();
+    System.out.println("Enter the lot number ");
+    String lotIn = in.next();
+
+    for (Property property : properties) {
+      if (property.lotNumber().equals(lotIn)) {
+        newList.add(property);
+      }
+    }
+    System.out.printf("The properties with lot number %s are:\n\n", lotIn);
+    return newList;
   }
 
   /**
@@ -25,6 +43,9 @@ public class PropertyRegistry {
   public void registerNewProperty() {
 
     System.out.println("Enter the municipality number the property resides in");
+    String municipalityNumber = in.next();
+
+    System.out.println("Enter the municipality name with '_' as whitespaces:");
     String municipalityName = in.next();
 
     System.out.println("Enter the lot number");
@@ -43,7 +64,14 @@ public class PropertyRegistry {
     String nameOfOwner = in.next();
 
     properties.add(
-        new Property(municipalityName, lotNumber, sectionNumber, propertyName, area, nameOfOwner));
+        new Property(
+            municipalityName,
+            municipalityNumber,
+            lotNumber,
+            sectionNumber,
+            propertyName,
+            area,
+            nameOfOwner));
     System.out.println("The property has been registered");
   }
 
@@ -59,12 +87,13 @@ public class PropertyRegistry {
       String municipalityNumber, String lotNumber, String sectionNumber) {
 
     ArrayList<Property> newList = new ArrayList<>();
-    for (Property property : properties)
-      if (property.municipalityName().equalsIgnoreCase(municipalityNumber)
+    for (Property property : properties) {
+      if (property.municipalityNumber().equals(municipalityNumber)
           && property.lotNumber().equals(lotNumber)
           && property.sectionNumber().equals(sectionNumber)) {
         newList.add(property);
       }
+    }
     return newList;
   }
 
@@ -76,7 +105,6 @@ public class PropertyRegistry {
   public ArrayList<Property> getProperties() {
     return properties;
   }
-
   /** Method to find the average area of all properties registered. */
   public void averageAreaOfAllProperties() {
     double average = 0;

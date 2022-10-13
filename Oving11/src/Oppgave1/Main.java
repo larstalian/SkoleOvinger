@@ -5,7 +5,7 @@ import java.util.Scanner;
 /** The main class. */
 public class Main {
   /**
-   * The main method
+   * The main method.
    *
    * @param args main
    */
@@ -38,14 +38,16 @@ public class Main {
         }
         case 4 -> run.averageAreaOfAllProperties();
 
-        case 5 -> runProgram = false;
+        case 5 -> System.out.println(run.allPropertiesWithLotNumberX().toString());
+
+        case 6 -> runProgram = false;
 
         default -> throw new IllegalStateException("Unexpected value: " + choice);
       }
     }
   }
 
-  /** menu method */
+  /** menu method. */
   public static void menu() {
     System.out.println(
         """
@@ -54,6 +56,7 @@ public class Main {
                 2. Print all properties registered
                 3. Search for properties with municipality-, lot- and section number
                 4. Calculate the average area for the registered properties
-                5. Exit program""");
+                5. Find all properties with lot number x
+                6. Exit program""");
   }
 }
