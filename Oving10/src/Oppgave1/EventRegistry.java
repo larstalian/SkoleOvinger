@@ -1,4 +1,4 @@
-package oppgave1;
+package Oppgave1;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -9,7 +9,7 @@ import java.util.Comparator;
  * compare each objects location to each other. Used with the .sort in the printEventsComparator
  * method it prints the event arraylist using the string builder.
  */
-public class EventRegister {
+public class EventRegistry {
 
   private final ArrayList<Event> events;
   private final Comparator<Event> eventSortLocation =
@@ -34,7 +34,7 @@ public class EventRegister {
         return evenTime1.compareTo(eventTime2);
       };
 
-  public EventRegister() {
+  public EventRegistry() {
     events = new ArrayList<>();
   }
 

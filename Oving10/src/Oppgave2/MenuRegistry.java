@@ -1,4 +1,4 @@
-package oppgave2;
+package Oppgave2;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -7,12 +7,12 @@ import java.util.Scanner;
  * The MenuRegister class contains the variables for the arraylists allMenus and AllDishes. The
  * variables are created in the constructor.
  */
-public class MenuRegister {
+public class MenuRegistry {
   private final ArrayList<Menu> allMenus;
   private final ArrayList<Dish> allDishes;
   Scanner in = new Scanner(System.in);
 
-  public MenuRegister() {
+  public MenuRegistry() {
     allMenus = new ArrayList<>();
     allDishes = new ArrayList<>();
   }

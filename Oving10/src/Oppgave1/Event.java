@@ -1,4 +1,4 @@
-package oppgave1;
+package Oppgave1;
 
 /**
  * The record for Oppgave1.Event. The record represents the immutable class Oppgave1.Event. It

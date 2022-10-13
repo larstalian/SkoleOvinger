@@ -1,4 +1,4 @@
-package oppgave2;
+package Oppgave2;
 
 import java.util.Scanner;
 
@@ -14,7 +14,7 @@ public class Client {
         "This is a program for registering Menus and registering dishes to those Menus");
 
     boolean programRun = true;
-    MenuRegister run = new MenuRegister();
+    MenuRegistry run = new MenuRegistry();
     Scanner in = new Scanner(System.in);
     int choice;
 

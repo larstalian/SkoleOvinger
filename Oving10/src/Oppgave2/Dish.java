@@ -1,4 +1,4 @@
-package oppgave2;
+package Oppgave2;
 
 /**
  * The Dish record class contains the variables for a dish object created in the menu register

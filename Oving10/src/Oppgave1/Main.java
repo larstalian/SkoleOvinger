@@ -1,4 +1,4 @@
-package oppgave1;
+package Oppgave1;
 
 import java.util.Scanner;
 
@@ -11,7 +11,7 @@ public class Main {
    */
   public static void main(String[] args) {
     Scanner in = new Scanner(System.in);
-    EventRegister run = new EventRegister();
+    EventRegistry run = new EventRegistry();
     boolean runClient = true;
     String stringInput;
     System.out.println("This program lets you register and sort events.");

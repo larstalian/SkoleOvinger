@@ -1,4 +1,4 @@
-package oppgave2;
+package Oppgave2;
 
 import java.util.ArrayList;
 
