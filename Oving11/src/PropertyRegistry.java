@@ -8,6 +8,12 @@ import java.util.Scanner;
  * lot- and section number the property resides in.
  */
 public class PropertyRegistry {
+
+  /**
+   * to doL
+   * move print to main
+   * return bool instead of void
+   */
   private final ArrayList<Property> properties;
   Scanner in = new Scanner(System.in);
 
@@ -110,6 +116,7 @@ public class PropertyRegistry {
     for (Property property : properties) {
       average += property.area();
     }
+
     average = average / properties.size();
     System.out.printf("The average area of the properties registered is %s\n\n", average);
   }
