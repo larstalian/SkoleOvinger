@@ -4,7 +4,7 @@ import java.util.Scanner;
 // Record class. Constructor is inside here somehow
 public record TextProcessing(String text) {
 
-  private static void client() {
+  public static void main(String[] args) {
     Scanner in = new Scanner(System.in);
     System.out.println("This program processes your text.\nWrite a text:");
     String textInput = in.nextLine();
@@ -34,10 +34,6 @@ public record TextProcessing(String text) {
 
     System.out.println("\nThe text in uppercase: ");
     text.methodPrinter(text.getTextUppercase());
-  }
-
-  public static void main(String[] args) {
-    client();
   }
 
   // Get methods
@@ -76,7 +72,6 @@ public record TextProcessing(String text) {
   }
 
   public String changeWordsInText(String wordInput, String wordInputReplace) {
-    // Changes an existing word in the text with the input
     return text().replaceAll(wordInput, wordInputReplace);
   }
 

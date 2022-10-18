@@ -101,19 +101,18 @@ public class AssignmentOverview {
   }
 
   /**
-   * A toString method which returns a list of Students registered.
+   * toString method which returns a list of Students registered.
    *
    * @return the student list
    */
+  @Override
   public String toString() {
-    StringBuilder s = new StringBuilder();
-    for (int i = 0; i < getNumberOfStudents(); i++) {
-      s.append(students.get(i).getName())
-          .append(". Approved assignments: ")
-          .append(students.get(i).getNumberOfApprovedAssignments())
-          .append(" | ");
-    }
-    return s.toString();
+    return "AssignmentOverview{"
+        + "students="
+        + students
+        + ", numberOfStudents="
+        + numberOfStudents
+        + '}';
   }
 
   /**
@@ -123,10 +122,10 @@ public class AssignmentOverview {
    * @return the student object that matches the student name input
    */
   public Student getStudentFromArray(String studentName) {
-    if (findStudent(studentName) == -1) {
+    if (findIndexOfStudent(studentName) == -1) {
       return null;
     }
-    return students.get(findStudent(studentName));
+    return students.get(findIndexOfStudent(studentName));
   }
 
   /**
@@ -144,7 +143,8 @@ public class AssignmentOverview {
    * @param name This students name
    * @param numberOfApprovedAssignments The number of approved assignments
    */
-  public void registerNewStudent(String name, int numberOfApprovedAssignments) {
+  public void registerNewStudent(
+      String name, int numberOfApprovedAssignments) { // returnere bool. så printe i klienten
     if (studentExists(name)) {
       students.add(new Student(name, numberOfApprovedAssignments));
       numberOfStudents += 1;
@@ -162,7 +162,7 @@ public class AssignmentOverview {
   }
 
   /**
-   * A help method to check if a student already exists.
+   * Method to check if a student already exists. Used by the registerStudent method.
    *
    * @param name This students name
    * @return true if the student already exists
@@ -179,13 +179,13 @@ public class AssignmentOverview {
   }
 
   /**
-   * A help method to find the student object in the student array list using the input String for
-   * name.
+   * Method to find the student object in the student array list using the input String for name.
+   * Used by the getStudentFromArray method.
    *
    * @param name The input String for name
    * @return the position of the Student object that matches the input String
    */
-  public int findStudent(String name) {
+  public int findIndexOfStudent(String name) {
     int index = -1;
     for (int i = 0; i < getNumberOfStudents(); i++) {
       if (students.get(i).getName().equals(name)) {

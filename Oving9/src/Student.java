@@ -44,4 +44,15 @@ public final class Student {
   public void increaseApprovedAssignments(int increase) {
     this.numberOfApprovedAssignments += increase;
   }
+
+  @Override
+  public String toString() {
+    return "Student{"
+        + "name='"
+        + name
+        + '\''
+        + ", numberOfApprovedAssignments="
+        + numberOfApprovedAssignments
+        + '}';
+  }
 }
