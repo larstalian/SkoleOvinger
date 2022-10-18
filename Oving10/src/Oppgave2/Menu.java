@@ -8,4 +8,10 @@ import java.util.ArrayList;
  * @param menuName The menu name
  * @param dishes The list of dishes
  */
-public record Menu(String menuName, ArrayList<Dish> dishes) {}
+public record Menu(String menuName, ArrayList<Dish> dishes) {
+
+  @Override
+  public String toString() {
+    return "\nMenu name: " + menuName + "\n\nDishes:: " + dishes;
+  }
+}

@@ -14,6 +14,7 @@ public record Dish(String dishName, String dishType, int price) {
    *
    * @return the object variables in a string
    */
+  @Override
   public String toString() {
     return "\nDish type: " + dishType + "\nDish name: " + dishName + "\nPrice: " + price + ",-\n";
   }
