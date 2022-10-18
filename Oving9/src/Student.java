@@ -47,12 +47,9 @@ public final class Student {
 
   @Override
   public String toString() {
-    return "Student{"
-        + "name='"
+    return "\n\nStudent name: "
         + name
-        + '\''
-        + ", numberOfApprovedAssignments="
-        + numberOfApprovedAssignments
-        + '}';
+        + "\nNumber of approved assignments:"
+        + numberOfApprovedAssignments;
   }
 }
