@@ -17,4 +17,21 @@ public record Event(
     String eventLocation,
     String eventOrganizer,
     String eventType,
-    String eventDate) {}
+    String eventDate) {
+  @Override
+  public String toString() {
+    return "\nEventID: "
+        + this.eventId()
+        + "\nEvent Name: "
+        + this.eventName()
+        + "\nEvent Location: "
+        + this.eventLocation()
+        + "\nEvent Organizer: "
+        + this.eventOrganizer()
+        + "\nEvent Type: "
+        + this.eventType()
+        + "\nEvent Date: "
+        + this.eventDate()
+        + "\n\n";
+  }
+}

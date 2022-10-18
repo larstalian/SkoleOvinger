@@ -66,7 +66,7 @@ public class EventRegistry {
    * @param eventType The event type
    * @param eventDate The event date
    */
-  public void registerNewEvent(
+  public boolean registerNewEvent(
       String eventId,
       String eventName,
       String eventLocation,
@@ -77,9 +77,10 @@ public class EventRegistry {
     if (!eventExists(eventId)) {
       events.add(
           new Event(eventId, eventName, eventLocation, eventOrganizer, eventType, eventDate));
+      return true;
 
     } else {
-      System.out.println("An event with that ID already exists");
+      return false;
     }
   }
 
@@ -91,14 +92,12 @@ public class EventRegistry {
    * @return true if an event with the provided event ID already exists.
    */
   public boolean eventExists(String eventId) {
-    boolean b = false;
     for (Event event : events) {
       if (event.eventId().equals(eventId)) {
-        b = true;
-        break;
+        return true;
       }
     }
-    return b;
+    return false;
   }
 
   /**
@@ -155,28 +154,14 @@ public class EventRegistry {
   }
 
   /**
-   * Method to print a given arraylist of type Oppgave1.Event if the arraylist is not empty. Uses
-   * the 'stringBuilder' method to build the String.
-   *
-   * @param l The given arraylist
-   */
-  public void printEventList(ArrayList<Event> l) {
-    if (l.isEmpty()) {
-      System.out.println("There are no events");
-    } else {
-      stringBuilder(l);
-    }
-  }
-
-  /**
    * Method to print the arraylist 'events' using the given comparator. Uses the 'stringBuilder'
    * method to build the String.
    *
    * @param l The given comparator.
    */
-  public void printEventListComparator(Comparator<Event> l) {
+  public String printEventListComparator(Comparator<Event> l) {
     getEvents().sort(l);
-    stringBuilder(events);
+    return stringBuilder(events);
   }
 
   /**
@@ -184,23 +169,17 @@ public class EventRegistry {
    *
    * @param events The 'events' arraylist.
    */
-  private void stringBuilder(ArrayList<Event> events) {
+  public String stringBuilder(ArrayList<Event> events) {
     StringBuilder s = new StringBuilder();
-    for (Event event : events) {
-      s.append("\nEventID: ")
-          .append(event.eventId())
-          .append("\nOppgave1.Event menuName: ")
-          .append(event.eventName())
-          .append("\nOppgave1.Event Location: ")
-          .append(event.eventLocation())
-          .append("\nOppgave1.Event Organizer: ")
-          .append(event.eventOrganizer())
-          .append("\nOppgave1.Event Type: ")
-          .append(event.eventType())
-          .append("\nOppgave1.Event Date: ")
-          .append(event.eventDate())
-          .append("\n");
+
+    if (!events.isEmpty()) {
+      for (Event event : events) {
+        s.append(event);
+      }
+      return String.valueOf(s);
+
+    } else {
+      return null;
     }
-    System.out.println(s);
   }
 }
