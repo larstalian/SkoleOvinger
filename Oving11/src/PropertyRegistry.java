@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * The PropertyRegistry class. The arraylist 'properties' is created in the constructor and is
@@ -8,14 +7,7 @@ import java.util.Scanner;
  * lot- and section number the property resides in.
  */
 public class PropertyRegistry {
-
-  /**
-   * to doL
-   * move print to main
-   * return bool instead of void
-   */
   private final ArrayList<Property> properties;
-  Scanner in = new Scanner(System.in);
 
   public PropertyRegistry() {
     properties = new ArrayList<>();
@@ -26,57 +18,53 @@ public class PropertyRegistry {
    *
    * @return an array list containing the properties with the matching lot number
    */
-  public ArrayList<Property> allPropertiesWithLotNumberX() {
+  public ArrayList<Property> allPropertiesWithLotNumberX(String lotIn) {
     ArrayList<Property> newList = new ArrayList<>();
-    System.out.println("Enter the lot number ");
-    String lotIn = in.next();
-
-    for (Property property : properties) {
+    for (Property property : properties) { // fix
       if (property.lotNumber().equals(lotIn)) {
         newList.add(property);
       }
     }
-    System.out.printf("The properties with lot number %s are:\n\n", lotIn);
     return newList;
   }
 
   /**
-   * Method for registering a new property. It adds the property object to the arraylist
+   * Method for registering a new property. It adds the property object to the arraylist *
    * 'properties'.
+   *
+   * @param municipalityName Number of the municipality
+   * @param municipalityNumber Name of the municipality
+   * @param lotNumber The lot number
+   * @param sectionNumber The section number
+   * @param propertyName Name of the property, if any.
+   * @param area The property area in quadratic meters
+   * @param nameOfOwner Full name of the property owner
+   * @return true if the property was registered
    */
-  public void registerNewProperty() {
+  public boolean registerNewProperty(
+      String municipalityNumber,
+      String lotNumber,
+      String sectionNumber,
+      String municipalityName,
+      String propertyName,
+      double area,
+      String nameOfOwner) {
 
-    System.out.println("Enter the municipality number the property resides in");
-    String municipalityNumber = in.next();
+    try {
+      properties.add(
+          new Property(
+              municipalityName,
+              municipalityNumber,
+              lotNumber,
+              sectionNumber,
+              propertyName,
+              area,
+              nameOfOwner));
+      return true;
 
-    System.out.println("Enter the municipality name with '_' as whitespaces:");
-    String municipalityName = in.next();
-
-    System.out.println("Enter the lot number");
-    String lotNumber = in.next();
-
-    System.out.println("Enter the section number");
-    String sectionNumber = in.next();
-
-    System.out.println("Enter the property name, if the property has no name, enter -");
-    String propertyName = in.next();
-
-    System.out.println("Enter the property area in quadratic meters");
-    double area = in.nextDouble();
-
-    System.out.println("Enter the full name of Owner with '_' as whitespaces");
-    String nameOfOwner = in.next();
-
-    properties.add(
-        new Property(
-            municipalityName,
-            municipalityNumber,
-            lotNumber,
-            sectionNumber,
-            propertyName,
-            area,
-            nameOfOwner));
-    System.out.println("The property has been registered");
+    } catch (Exception e) {
+      return false;
+    }
   }
 
   /**
@@ -110,14 +98,16 @@ public class PropertyRegistry {
     return properties;
   }
 
-  /** Method to find the average area of all properties registered. */
-  public void averageAreaOfAllProperties() {
+  /**
+   * Method to find the average area of all properties registered.
+   *
+   * @return the area.
+   */
+  public double averageAreaOfAllProperties() {
     double average = 0;
     for (Property property : properties) {
       average += property.area();
     }
-
-    average = average / properties.size();
-    System.out.printf("The average area of the properties registered is %s\n\n", average);
+    return average / properties.size();
   }
 }

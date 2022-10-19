@@ -25,22 +25,24 @@ public record Property(
    *
    * @return the string
    */
+  @Override
   public String toString() {
 
-    return "Property:\n"
-        + "Kommunenummer-gnr/bnr: "
+    return "\nKommunenummer-gnr/bnr: "
         + municipalityNumber
         + "-"
         + lotNumber
         + "/"
         + sectionNumber
-        + "  Municipality name: "
+        + "\nKommunens navn: "
         + municipalityName
-        + "  Property name: "
+        + "\nEiendommens navn: "
         + propertyName
-        + "  Area: "
+        + "\nAreal: "
         + area
-        + "  Name of owner: "
-        + nameOfOwner;
+        + " m^2 "
+        + "\nEier: "
+        + nameOfOwner
+        + "\n";
   }
 }

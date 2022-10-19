@@ -8,45 +8,85 @@ public class Main {
    * @param args main
    */
   public static void main(String[] args) {
-    Scanner in = new Scanner(System.in);
     PropertyRegistry run = new PropertyRegistry();
+    Main m = new Main();
+
+    // test data
+    run.registerNewProperty("Gloppen", "1445", "77", "631", "-", 1017.6, "Jens Olsen");
+    run.registerNewProperty("Gloppen", "1445", "77", "131", "Syningom", 661.3, "Nicolay Madsen");
+    run.registerNewProperty("Gloppen", "1445", "75", "19", "Fugletun", 650.6, "Evilyn Jensen");
+    run.registerNewProperty("Gloppen", "1445", "74", "188", "-", 1457.2, "Karl Ove Bråten");
+    run.registerNewProperty("Gloppen", "1445", "69", "47", "Høiberg", 1339.4, "Elsa Indregård");
+
+    // test data close
+
     System.out.println(
         "This is a property registry program. The program has the following functions:");
     boolean runProgram = true;
 
     while (runProgram) {
       menu();
-      int choice = in.nextInt();
+      Scanner scanner2 = new Scanner(System.in);
+
+      int choice = scanner2.nextInt();
       switch (choice) {
-        case 1 -> run.registerNewProperty();
+        case 1 -> {
+          if (run.registerNewProperty(
+              m.municipalityNumber(),
+              m.lotNumber(),
+              m.sectionNumber(),
+              m.municipalityName(),
+              m.propertyName(),
+              m.area(),
+              m.nameOfOwner())) {
 
-        case 2 -> System.out.println(run.getProperties().toString());
+            System.out.println("The property has been registered");
 
-        case 3 -> {
-          System.out.println("Enter the municipality the property resides in");
-          String municipalityName = in.next();
-
-          System.out.println("Enter the lot number");
-          String lotNumber = in.next();
-
-          System.out.println("Enter the section number");
-          String sectionNumber = in.next();
-
-          System.out.println(run.findProperty(municipalityName, lotNumber, sectionNumber));
+          } else {
+            System.out.println(
+                "The property has not been registered, please check your input and try again");
+          }
         }
-        case 4 -> run.averageAreaOfAllProperties();
 
-        case 5 -> System.out.println(run.allPropertiesWithLotNumberX().toString());
+        case 2 -> {
+          System.out.println("\nList of all properties:\n");
+          System.out.println(
+              run.getProperties()); // this might not work, make string builder method if not
+        }
+        case 3 -> {
+          System.out.println("Enter the municipality number the property resides in");
 
-        case 6 -> runProgram = false;
+          if (run.findProperty(m.municipalityName(), m.lotNumber(), m.sectionNumber()).isEmpty()) {
+            System.out.println("\nThere are no properties matching the input\n");
+
+          } else {
+            System.out.println("\nThe property matching the search:\n");
+            System.out.println(
+                run.findProperty(m.municipalityNumber(), m.lotNumber(), m.sectionNumber()));
+          }
+        }
+        case 4 -> System.out.printf(
+            "The average area of the properties registered is %s\n\n",
+            run.averageAreaOfAllProperties());
+
+        case 5 -> {
+          String s = m.lotNumber();
+          System.out.printf(
+              "The properties with lot number %s are:\n\n%s",
+              s, run.allPropertiesWithLotNumberX(s));
+        }
+
+        case 6 -> {
+          System.out.println("The program exits...");
+          runProgram = false;
+        }
 
         default -> throw new IllegalStateException("Unexpected value: " + choice);
       }
     }
   }
 
-  /** menu method. */
-  public static void menu() {
+  private static void menu() {
     System.out.println(
         """
                 \nMake a choice:
@@ -56,5 +96,47 @@ public class Main {
                 4. Calculate the average area for the registered properties
                 5. Find all properties with lot number x
                 6. Exit program""");
+  }
+
+  private String nameOfOwner() {
+    System.out.println("Enter the full name of Owner");
+    Scanner scanner9 = new Scanner(System.in);
+    return scanner9.nextLine();
+  }
+
+  private double area() {
+    System.out.println("Enter the property area in quadratic meters");
+    Scanner scanner8 = new Scanner(System.in);
+    return scanner8.nextDouble();
+  }
+
+  private String propertyName() {
+    System.out.println("Enter the property name, if the property has no name, enter -");
+    Scanner scanner7 = new Scanner(System.in);
+    return scanner7.nextLine();
+  }
+
+  private String sectionNumber() {
+    System.out.println("Enter the section number");
+    Scanner scanner6 = new Scanner(System.in);
+    return scanner6.nextLine();
+  }
+
+  private String lotNumber() {
+    System.out.println("Enter the lot number");
+    Scanner scanner11 = new Scanner(System.in);
+    return scanner11.nextLine();
+  }
+
+  private String municipalityNumber() {
+    System.out.println("Enter the municipality number the property resides in");
+    Scanner scanner3 = new Scanner(System.in);
+    return scanner3.nextLine();
+  }
+
+  private String municipalityName() {
+    System.out.println("Enter the municipality name");
+    Scanner scanner4 = new Scanner(System.in);
+    return scanner4.nextLine();
   }
 }
