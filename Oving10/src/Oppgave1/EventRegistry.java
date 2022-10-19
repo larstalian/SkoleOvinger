@@ -91,7 +91,7 @@ public class EventRegistry {
    * @param eventId The provided event ID.
    * @return true if an event with the provided event ID already exists.
    */
-  public boolean eventExists(String eventId) {
+  private boolean eventExists(String eventId) {
     for (Event event : events) {
       if (event.eventId().equals(eventId)) {
         return true;
