@@ -144,10 +144,17 @@ public class EventRegistry {
    */
   public ArrayList<Event> allEventsInTimeFrame(String eventDateStart, String eventDateEnd) {
     ArrayList<Event> newList = new ArrayList<>();
-    for (int i = 0; i < Integer.parseInt(eventDateEnd); i++) {
-      Event event = events.get(i);
-      if (Integer.parseInt(event.eventDate()) > Integer.parseInt(eventDateStart)) {
+    long i = Long.parseLong(eventDateStart.replace(".", ""));
+    long j = Long.parseLong(eventDateEnd.replace(".", ""));
+
+    for (Event event : events) {
+      long date = Long.parseLong(event.eventDate().replace(".", ""));
+
+      if (date >= i && date <= j) {
         newList.add(event);
+      }
+      if (date > j) {
+        break;
       }
     }
     return newList;

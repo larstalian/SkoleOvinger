@@ -11,6 +11,7 @@ public class Main {
    */
   public static void main(String[] args) {
     EventRegistry run = new EventRegistry();
+    Main m = new Main();
 
     // test data
     run.registerNewEvent("100", "Nice_Name", "Oslo", "Erik", "Festival", "2022.10.29.1800");
@@ -19,51 +20,34 @@ public class Main {
     run.registerNewEvent("103", "Nice_Name", "Trondheim", "Erik", "Party", "2022.10.30.1900");
     // test data close
 
-    Scanner in = new Scanner(System.in);
-    boolean runClient = true;
-    String stringInput;
-
     System.out.println("This program lets you register and sort events.");
 
+    boolean runClient = true;
     while (runClient) {
       menu();
-      int choice = in.nextInt();
+
+      Scanner scanner1 = new Scanner(System.in);
+      int choice = scanner1.nextInt();
 
       switch (choice) {
         case 1 -> {
-          System.out.println("Input must not contain whitespaces. For multiple words use: _");
-          System.out.println("Oppgave1.Event ID:");
-          String eventId = in.next();
-
-          System.out.println("Oppgave1.Event menuName:");
-          String eventName = in.next();
-
-          System.out.println("Oppgave1.Event Location:");
-          String eventLocation = in.next();
-
-          System.out.println("Oppgave1.Event Organizer:");
-          String eventOrganizer = in.next();
-
-          System.out.println("Oppgave1.Event type:");
-          String eventType = in.next();
-
-          System.out.println("Oppgave1.Event date (yyyy.mm.dd.time):");
-          String eventDate = in.next();
-          eventDate = eventDate.replace(".", "");
           if (run.registerNewEvent(
-              eventId, eventName, eventLocation, eventOrganizer, eventType, eventDate)) {
+              m.eventId(),
+              m.eventName(),
+              m.eventLocation(),
+              m.eventOrganizer(),
+              m.eventType(),
+              m.eventDate())) {
             System.out.println("\nThe event has been created\n");
+
           } else {
             System.out.println("\nAn event with that ID already exists\n");
           }
         }
 
         case 2 -> {
-          System.out.println("Enter the location:");
-          stringInput = in.next();
-
           try {
-            System.out.println(run.stringBuilder((run.findAllEventsOnLocation(stringInput))));
+            System.out.println(run.stringBuilder((run.findAllEventsOnLocation(m.eventLocation()))));
 
           } catch (Exception e) {
             System.out.println("There are no events on that location");
@@ -71,12 +55,9 @@ public class Main {
         }
 
         case 3 -> {
-          System.out.println("Enter the date in yyyy.mm.dd:");
-          stringInput = in.next();
-
           try {
             System.out.println("\nList of events on that date:");
-            System.out.println(run.stringBuilder(run.findAllEventsOnDate(stringInput)));
+            System.out.println(run.stringBuilder(run.findAllEventsOnDate(m.eventDate())));
 
           } catch (Exception e) {
             System.out.println("There are no events on that date");
@@ -84,20 +65,14 @@ public class Main {
         }
 
         case 4 -> {
-          System.out.println("Enter the start date in yyyy.mm.dd.time");
-          stringInput = in.next();
-
-          System.out.println("Enter the end date in yyyy.mm.dd.time");
-          String stringInput2 = in.next();
-
+          System.out.println("Enter the start date, then the end date");
           try {
             System.out.println(
-                run.stringBuilder(
-                    run.allEventsInTimeFrame(
-                        stringInput.replace(".", ""), stringInput2.replace(".", ""))));
+                run.stringBuilder(run.allEventsInTimeFrame(m.eventDate(), m.eventDate())));
 
           } catch (Exception e) {
             System.out.println("There are no events in that time frame");
+            throw new RuntimeException(e);
           }
         }
 
@@ -107,11 +82,12 @@ public class Main {
                       Make a choice:
 
                       Sort by:
-                      1. Oppgave1.Event location
-                      2. Oppgave1.Event time
-                      3. Oppgave1.Event type""");
+                      1. Event location
+                      2. Event time
+                      3. Event type""");
 
-          int choice2 = in.nextInt();
+          Scanner scanner2 = new Scanner(System.in);
+          int choice2 = scanner2.nextInt();
 
           switch (choice2) {
             case 1 -> {
@@ -143,7 +119,6 @@ public class Main {
     }
   }
 
-  /** Client menu method. */
   private static void menu() {
     System.out.println(
         """
@@ -154,5 +129,42 @@ public class Main {
             4. Find all events within a time frame
             5. Sort events after time, location or event type
             6. Exit""");
+  }
+
+  private String eventDate() {
+    System.out.println("Event date (yyyy.mm.dd.time):");
+    Scanner scanner = new Scanner(System.in);
+    //    eventDate = eventDate.replace(".", "");
+    return scanner.next();
+  }
+
+  private String eventType() {
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("Event type:");
+    return scanner.nextLine();
+  }
+
+  private String eventOrganizer() {
+    System.out.println("Event Organizer:");
+    Scanner scanner = new Scanner(System.in);
+    return scanner.nextLine();
+  }
+
+  private String eventLocation() {
+    System.out.println("Event Location:");
+    Scanner scanner = new Scanner(System.in);
+    return scanner.nextLine();
+  }
+
+  private String eventName() {
+    System.out.println("Event Name:");
+    Scanner scanner = new Scanner(System.in);
+    return scanner.nextLine();
+  }
+
+  private String eventId() {
+    System.out.println("Event ID:");
+    Scanner scanner = new Scanner(System.in);
+    return scanner.nextLine();
   }
 }
