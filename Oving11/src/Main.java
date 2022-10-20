@@ -32,10 +32,10 @@ public class Main {
       switch (choice) {
         case 1 -> {
           if (run.registerNewProperty(
+              m.municipalityName(),
               m.municipalityNumber(),
               m.lotNumber(),
               m.sectionNumber(),
-              m.municipalityName(),
               m.propertyName(),
               m.area(),
               m.nameOfOwner())) {
@@ -50,19 +50,18 @@ public class Main {
 
         case 2 -> {
           System.out.println("\nList of all properties:\n");
-          System.out.println(
-              run.getProperties()); // this might not work, make string builder method if not
+          System.out.println(run.arrayListPrinter(run.getProperties()));
         }
         case 3 -> {
-          System.out.println("Enter the municipality number the property resides in");
-
-          if (run.findProperty(m.municipalityName(), m.lotNumber(), m.sectionNumber()).isEmpty()) {
-            System.out.println("\nThere are no properties matching the input\n");
+          String s1 = m.municipalityNumber();
+          String s2 = m.lotNumber();
+          String s3 = m.sectionNumber();
+          System.out.println("\nThe property matching the search:\n");
+          if (run.findProperty(s1, s2, s3) != null) {
+            System.out.println(run.findProperty(s1, s2, s3));
 
           } else {
-            System.out.println("\nThe property matching the search:\n");
-            System.out.println(
-                run.findProperty(m.municipalityNumber(), m.lotNumber(), m.sectionNumber()));
+            System.out.println("\nThere are no properties matching the input\n");
           }
         }
         case 4 -> System.out.printf(
@@ -77,6 +76,17 @@ public class Main {
         }
 
         case 6 -> {
+          if (run.deleteProperty(m.municipalityNumber(), m.lotNumber(), m.sectionNumber())) {
+            System.out.println("The property was deleted");
+          } else {
+            System.out.println("The property was not deleted");
+          }
+        }
+
+        case 7 -> System.out.printf(
+            "Number of properties registered are: %s", run.getProperties().size());
+
+        case 8 -> {
           System.out.println("The program exits...");
           runProgram = false;
         }
@@ -95,7 +105,9 @@ public class Main {
                 3. Search for properties with municipality-, lot- and section number
                 4. Calculate the average area for the registered properties
                 5. Find all properties with lot number x
-                6. Exit program""");
+                6. Delete a property
+                7. Find number of properties registered
+                8. Exit program""");
   }
 
   private String nameOfOwner() {

@@ -20,7 +20,7 @@ public class PropertyRegistry {
    */
   public ArrayList<Property> allPropertiesWithLotNumberX(String lotIn) {
     ArrayList<Property> newList = new ArrayList<>();
-    for (Property property : properties) { // fix
+    for (Property property : properties) {
       if (property.lotNumber().equals(lotIn)) {
         newList.add(property);
       }
@@ -42,10 +42,10 @@ public class PropertyRegistry {
    * @return true if the property was registered
    */
   public boolean registerNewProperty(
+      String municipalityName,
       String municipalityNumber,
       String lotNumber,
       String sectionNumber,
-      String municipalityName,
       String propertyName,
       double area,
       String nameOfOwner) {
@@ -75,18 +75,15 @@ public class PropertyRegistry {
    * @param sectionNumber The section number
    * @return an arraylist of type Property containing the properties matching the params.
    */
-  public ArrayList<Property> findProperty(
-      String municipalityNumber, String lotNumber, String sectionNumber) {
-
-    ArrayList<Property> newList = new ArrayList<>();
+  public Property findProperty(String municipalityNumber, String lotNumber, String sectionNumber) {
     for (Property property : properties) {
       if (property.municipalityNumber().equals(municipalityNumber)
           && property.lotNumber().equals(lotNumber)
           && property.sectionNumber().equals(sectionNumber)) {
-        newList.add(property);
+        return property;
       }
     }
-    return newList;
+    return null;
   }
 
   /**
@@ -109,5 +106,22 @@ public class PropertyRegistry {
       average += property.area();
     }
     return average / properties.size();
+  }
+
+  public boolean deleteProperty(String municipalityNumber, String lotNumber, String sectionNumber) {
+    try {
+      properties.remove(findProperty(municipalityNumber, lotNumber, sectionNumber));
+      return true;
+    } catch (Exception e) {
+      return false;
+    }
+  }
+
+  public String arrayListPrinter(ArrayList<Property> properties) {
+    StringBuilder s = new StringBuilder();
+    for (Property property : properties) {
+      if (property != null) s.append(property);
+    }
+    return String.valueOf(s);
   }
 }

@@ -2,6 +2,7 @@ package Oppgave1;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.stream.Collectors;
 
 /**
  * The Oppgave1.EventRegister class contains the variable 'events' and 3 comparators used to sort
@@ -108,13 +109,16 @@ public class EventRegistry {
    * @return a new arraylist containing only the events with the given location
    */
   public ArrayList<Event> findAllEventsOnLocation(String eventLocation) {
-    ArrayList<Event> newList = new ArrayList<>();
-    for (Event event : events) {
-      if (event.eventLocation().equalsIgnoreCase(eventLocation)) {
-        newList.add(event);
-      }
-    }
-    return newList;
+    return events.stream()
+        .filter(event -> event.eventLocation().equals(eventLocation))
+        .collect(Collectors.toCollection(ArrayList::new));
+    //    ArrayList<Event> newList = new ArrayList<>();
+    //    for (Event event : events) {
+    //      if (event.eventLocation().equalsIgnoreCase(eventLocation)) {
+    //        newList.add(event);
+    //      }
+    //    }
+    //    return newList;
   }
 
   /**

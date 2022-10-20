@@ -39,12 +39,7 @@ public class MenuRegistry {
    * @return true if the menu already exists
    */
   public boolean menuExists(String menuName) {
-    for (Menu menu : allMenus) {
-      if (menu.menuName().equals(menuName)) {
-        return true;
-      }
-    }
-    return false;
+    return allMenus.stream().anyMatch(menu -> menu.menuName().equals(menuName));
   }
 
   /**
@@ -72,12 +67,10 @@ public class MenuRegistry {
    * @return the dish object with the matching dish name
    */
   public Dish findDish(String dishName) {
-    for (Dish dish : allDishes) {
-      if (dishName.equalsIgnoreCase(dish.dishName())) {
-        return dish;
-      }
-    }
-    return null;
+    return allDishes.stream()
+        .filter(dish -> dishName.equalsIgnoreCase(dish.dishName()))
+        .findFirst()
+        .orElse(null);
   }
 
   /**
@@ -87,14 +80,7 @@ public class MenuRegistry {
    * @return true if the dish already exists
    */
   public boolean dishExists(String dishName) {
-    boolean b = false;
-    for (Dish dish : allDishes) {
-      if (dish.dishName().equals(dishName)) {
-        b = true;
-        break;
-      }
-    }
-    return b;
+    return allDishes.stream().anyMatch(dish -> dish.dishName().equals(dishName));
   }
 
   /**
