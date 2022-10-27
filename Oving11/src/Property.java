@@ -5,8 +5,15 @@ import java.util.Objects;
  * property object is created in the 'PropertyRegistry' class through the method
  * 'registerNewProperty'. The record is immutable.
  */
-public record Property(String municipalityName, String municipalityNumber, String lotNumber, String sectionNumber,
-                       String propertyName, double area, String nameOfOwner) {
+public final class Property {
+  private final String municipalityName;
+  private final String municipalityNumber;
+  private final String lotNumber;
+  private final String sectionNumber;
+  private final String propertyName;
+  private final double area;
+  private final String nameOfOwner;
+
   /**
    * @param municipalityName   Number of the municipality
    * @param municipalityNumber Name of the municipality
@@ -16,7 +23,14 @@ public record Property(String municipalityName, String municipalityNumber, Strin
    * @param area               The property area in quadratic meters
    * @param nameOfOwner        Full name of the property owner
    */
-  public Property {
+  public Property(String municipalityName, String municipalityNumber, String lotNumber, String sectionNumber, String propertyName, double area, String nameOfOwner) {
+    this.municipalityName = municipalityName;
+    this.municipalityNumber = municipalityNumber;
+    this.lotNumber = lotNumber;
+    this.sectionNumber = sectionNumber;
+    this.propertyName = propertyName;
+    this.area = area;
+    this.nameOfOwner = nameOfOwner;
   }
 
   /**
@@ -58,5 +72,39 @@ public record Property(String municipalityName, String municipalityNumber, Strin
             && Double.doubleToLongBits(this.area) == Double.doubleToLongBits(that.area)
             && Objects.equals(this.nameOfOwner, that.nameOfOwner);
   }
+
+  public String municipalityName() {
+    return municipalityName;
+  }
+
+  public String municipalityNumber() {
+    return municipalityNumber;
+  }
+
+  public String lotNumber() {
+    return lotNumber;
+  }
+
+  public String sectionNumber() {
+    return sectionNumber;
+  }
+
+  public String propertyName() {
+    return propertyName;
+  }
+
+  public double area() {
+    return area;
+  }
+
+  public String nameOfOwner() {
+    return nameOfOwner;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(municipalityName, municipalityNumber, lotNumber, sectionNumber, propertyName, area, nameOfOwner);
+  }
+
 
 }

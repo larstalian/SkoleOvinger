@@ -67,10 +67,12 @@ public class MenuRegistry {
    * @return the dish object with the matching dish name
    */
   public Dish findDish(String dishName) {
-    return allDishes.stream()
-        .filter(dish -> dishName.equalsIgnoreCase(dish.dishName()))
-        .findFirst()
-        .orElse(null);
+    for (Dish dish : allDishes) {
+      if (dishName.equalsIgnoreCase(dish.dishName())) {
+        return dish;
+      }
+    }
+    return null;
   }
 
   /**

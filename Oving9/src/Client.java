@@ -14,7 +14,7 @@ public class Client {
     AssignmentOverview main = new AssignmentOverview();
 
     System.out.println(
-        "This program lets you register new students " + "and track their approved assignments");
+        "This program lets you register new students and track their approved assignments");
 
     boolean run = true;
 
@@ -58,7 +58,7 @@ public class Client {
           try {
             System.out.println(
                 "\nThe student has "
-                    + main.getStudentFromArray(name).getNumberOfApprovedAssignments()
+                    + main.findStudentWithName(name).getNumberOfApprovedAssignments()
                     + " approved assignments");
 
           } catch (Exception e) {
@@ -73,12 +73,12 @@ public class Client {
           int increase = in.nextInt();
 
           try {
-            main.getStudentFromArray(name).increaseApprovedAssignments(increase);
+            main.findStudentWithName(name).increaseApprovedAssignments(increase);
             System.out.println(
                 "\nThe student "
                     + name
                     + " now has "
-                    + main.getStudentFromArray(name).getNumberOfApprovedAssignments()
+                    + main.findStudentWithName(name).getNumberOfApprovedAssignments()
                     + " approved assignments");
 
           } catch (Exception e) {

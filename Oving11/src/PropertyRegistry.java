@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  * The PropertyRegistry class. The arraylist 'properties' is created in the constructor and is
@@ -19,13 +20,9 @@ public class PropertyRegistry {
    * @return an array list containing the properties with the matching lot number
    */
   public ArrayList<Property> allPropertiesWithLotNumberX(String lotIn) {
-    ArrayList<Property> newList = new ArrayList<>();
-    for (Property property : properties) {
-      if (property.lotNumber().equals(lotIn)) {
-        newList.add(property);
-      }
-    }
-    return newList;
+    return properties.stream()
+        .filter(property -> property.lotNumber().equals(lotIn))
+        .collect(Collectors.toCollection(ArrayList::new));
   }
 
   /**
@@ -101,10 +98,7 @@ public class PropertyRegistry {
    * @return the area.
    */
   public double averageAreaOfAllProperties() {
-    double average = 0;
-    for (Property property : properties) {
-      average += property.area();
-    }
+    double average = properties.stream().mapToDouble(Property::area).sum();
     return average / properties.size();
   }
 
@@ -119,9 +113,7 @@ public class PropertyRegistry {
 
   public String arrayListPrinter(ArrayList<Property> properties) {
     StringBuilder s = new StringBuilder();
-    for (Property property : properties) {
-      if (property != null) s.append(property);
-    }
+    properties.forEach(s::append);
     return String.valueOf(s);
   }
 }

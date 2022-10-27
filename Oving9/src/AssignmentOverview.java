@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * The AssignmentOverview class. Contains the client, list of students and methods to register
@@ -22,11 +21,13 @@ public class AssignmentOverview {
    * @param studentName This students name
    * @return the student object that matches the student name input
    */
-  public Student getStudentFromArray(String studentName) {
-    if (findIndexOfStudent(studentName) == -1) {
-      return null;
+  public Student findStudentWithName(String studentName) {
+    for (Student student : students) {
+      if (student.getName().equalsIgnoreCase(studentName)) {
+        return student;
+      }
     }
-    return students.get(findIndexOfStudent(studentName));
+    return null;
   }
 
   /**
@@ -49,8 +50,8 @@ public class AssignmentOverview {
     if (!studentExists(name)) {
       students.add(new Student(name, numberOfApprovedAssignments));
       numberOfStudents += 1;
-
       return true;
+
     } else {
       return false;
     }
@@ -63,30 +64,7 @@ public class AssignmentOverview {
    * @return true if the student already exists
    */
   public boolean studentExists(String name) {
-    for (Student value : students) {
-      if (Objects.equals(value.getName(), name)) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  /**
-   * Method to find the student object in the student array list using the input String for name.
-   * Used by the getStudentFromArray method.
-   *
-   * @param name The input String for name
-   * @return the position of the Student object that matches the input String
-   */
-  public int findIndexOfStudent(String name) {
-    int index = -1;
-    for (int i = 0; i < getNumberOfStudents(); i++) {
-      if (students.get(i).getName().equals(name)) {
-        index = i;
-        break;
-      }
-    }
-    return index;
+    return findStudentWithName(name) != null;
   }
 
   /**
