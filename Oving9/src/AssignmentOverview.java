@@ -22,12 +22,10 @@ public class AssignmentOverview {
    * @return the student object that matches the student name input
    */
   public Student findStudentWithName(String studentName) {
-    for (Student student : students) {
-      if (student.getName().equalsIgnoreCase(studentName)) {
-        return student;
-      }
-    }
-    return null;
+    return students.stream()
+        .filter(student -> student.getName().equalsIgnoreCase(studentName))
+        .findFirst()
+        .orElse(null);
   }
 
   /**
@@ -46,7 +44,6 @@ public class AssignmentOverview {
    * @param numberOfApprovedAssignments The number of approved assignments
    */
   public boolean registerNewStudent(String name, int numberOfApprovedAssignments) {
-
     if (!studentExists(name)) {
       students.add(new Student(name, numberOfApprovedAssignments));
       numberOfStudents += 1;
@@ -74,9 +71,7 @@ public class AssignmentOverview {
    */
   public String arrayBuilder() {
     StringBuilder s = new StringBuilder();
-    for (Student student : students) {
-      s.append(student);
-    }
+    students.forEach(s::append);
     return String.valueOf(s);
   }
 }

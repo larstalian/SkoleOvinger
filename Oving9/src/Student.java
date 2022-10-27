@@ -45,6 +45,7 @@ public final class Student {
     try {
       this.numberOfApprovedAssignments += increase;
       return true;
+
     } catch (Exception e) {
       return false;
     }
