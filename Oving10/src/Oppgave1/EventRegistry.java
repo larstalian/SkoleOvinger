@@ -13,30 +13,34 @@ import java.util.stream.Collectors;
 public class EventRegistry {
 
   private final ArrayList<Event> events;
-  private final Comparator<Event> eventSortLocation =
-      (o1, o2) -> {
-        String eventLocation1 = o1.eventLocation().toUpperCase();
-        String eventLocation2 = o2.eventLocation().toUpperCase();
+  private final Comparator<Event> eventSortLocation;
+  private final Comparator<Event> eventSortType;
+  private final Comparator<Event> eventSortDate;
 
-        return eventLocation1.compareTo(eventLocation2);
-      };
-  private final Comparator<Event> eventSortType =
-      (o1, o2) -> {
-        String eventType1 = o1.eventType().toUpperCase();
-        String eventType2 = o2.eventType().toUpperCase();
-
-        return eventType1.compareTo(eventType2);
-      };
-  private final Comparator<Event> eventSortDate =
-      (o1, o2) -> {
-        String evenTime1 = o1.eventDate();
-        String eventTime2 = o2.eventDate();
-
-        return evenTime1.compareTo(eventTime2);
-      };
-
+  /** Constructor. */
   public EventRegistry() {
     events = new ArrayList<>();
+    eventSortType =
+        (o1, o2) -> {
+          String eventType1 = o1.eventType().toUpperCase();
+          String eventType2 = o2.eventType().toUpperCase();
+
+          return eventType1.compareTo(eventType2);
+        };
+    eventSortDate =
+        (o1, o2) -> {
+          String evenTime1 = o1.eventDate();
+          String eventTime2 = o2.eventDate();
+
+          return evenTime1.compareTo(eventTime2);
+        };
+    eventSortLocation =
+        (o1, o2) -> {
+          String eventLocation1 = o1.eventLocation().toUpperCase();
+          String eventLocation2 = o2.eventLocation().toUpperCase();
+
+          return eventLocation1.compareTo(eventLocation2);
+        };
   }
 
   public ArrayList<Event> getEvents() {
@@ -93,12 +97,7 @@ public class EventRegistry {
    * @return true if an event with the provided event ID already exists.
    */
   private boolean eventExists(String eventId) {
-    for (Event event : events) {
-      if (event.eventId().equals(eventId)) {
-        return true;
-      }
-    }
-    return false;
+    return events.stream().anyMatch(event -> event.eventId().equals(eventId));
   }
 
   /**
@@ -112,13 +111,6 @@ public class EventRegistry {
     return events.stream()
         .filter(event -> event.eventLocation().equals(eventLocation))
         .collect(Collectors.toCollection(ArrayList::new));
-    //    ArrayList<Event> newList = new ArrayList<>();
-    //    for (Event event : events) {
-    //      if (event.eventLocation().equalsIgnoreCase(eventLocation)) {
-    //        newList.add(event);
-    //      }
-    //    }
-    //    return newList;
   }
 
   /**
@@ -129,13 +121,9 @@ public class EventRegistry {
    * @return a new arraylist containing only the events with the given date
    */
   public ArrayList<Event> findAllEventsOnDate(String findOnThisDate) {
-    ArrayList<Event> newList = new ArrayList<>();
-    for (Event event : events) {
-      if (event.eventDate().startsWith(findOnThisDate)) {
-        newList.add(event);
-      }
-    }
-    return newList;
+    return events.stream()
+        .filter(event -> event.eventDate().startsWith(findOnThisDate))
+        .collect(Collectors.toCollection(ArrayList::new));
   }
 
   /**
@@ -184,9 +172,7 @@ public class EventRegistry {
     StringBuilder s = new StringBuilder();
 
     if (!events.isEmpty()) {
-      for (Event event : events) {
-        s.append(event);
-      }
+      events.forEach(s::append);
       return String.valueOf(s);
 
     } else {

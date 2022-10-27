@@ -1,6 +1,7 @@
 package Oppgave2;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  * The MenuRegister class contains the variables for the arraylists allMenus and AllDishes. The
@@ -67,12 +68,10 @@ public class MenuRegistry {
    * @return the dish object with the matching dish name
    */
   public Dish findDish(String dishName) {
-    for (Dish dish : allDishes) {
-      if (dishName.equalsIgnoreCase(dish.dishName())) {
-        return dish;
-      }
-    }
-    return null;
+    return allDishes.stream()
+        .filter(dish -> dishName.equalsIgnoreCase(dish.dishName()))
+        .findFirst()
+        .orElse(null);
   }
 
   /**
@@ -93,7 +92,6 @@ public class MenuRegistry {
    */
   public StringBuilder stringBuilderDishes(ArrayList<Dish> dishes) {
     StringBuilder s = new StringBuilder();
-
     if (dishes.isEmpty()) {
       s = new StringBuilder("\nThis list is empty");
     } else {
@@ -112,12 +110,12 @@ public class MenuRegistry {
    */
   public StringBuilder stringBuilderMenus(ArrayList<Menu> menus) {
     StringBuilder s = new StringBuilder();
-    for (Menu menu : menus) {
-      s.append("\n\n\nMenu name: ")
-          .append(menu.menuName())
-          .append("\nContaining dishes:\n")
-          .append(stringBuilderDishes(menu.dishes()));
-    }
+    menus.forEach(
+        menu ->
+            s.append("\n\n\nMenu name: ")
+                .append(menu.menuName())
+                .append("\nContaining dishes:\n")
+                .append(stringBuilderDishes(menu.dishes())));
     return s;
   }
 
@@ -150,14 +148,8 @@ public class MenuRegistry {
    * @return a new arraylist of type Dish with the matching type
    */
   public ArrayList<Dish> findDishByType(String dishType) {
-    ArrayList<Dish> newList = new ArrayList<>();
-
-    for (Dish dish : allDishes) {
-
-      if (dish.dishType().equalsIgnoreCase(dishType)) {
-        newList.add(dish);
-      }
-    }
-    return newList;
+    return allDishes.stream()
+        .filter(dish -> dish.dishType().equalsIgnoreCase(dishType))
+        .collect(Collectors.toCollection(ArrayList::new));
   }
 }
