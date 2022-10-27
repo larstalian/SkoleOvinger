@@ -41,8 +41,13 @@ public final class Student {
    *
    * @param increase The increase of approved assignments
    */
-  public void increaseApprovedAssignments(int increase) {
-    this.numberOfApprovedAssignments += increase;
+  public boolean increaseApprovedAssignments(int increase) {
+    try {
+      this.numberOfApprovedAssignments += increase;
+      return true;
+    } catch (Exception e) {
+      return false;
+    }
   }
 
   @Override

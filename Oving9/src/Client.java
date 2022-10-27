@@ -47,7 +47,8 @@ public class Client {
                 name, numberOfApprovedAssignments);
 
           } else {
-            System.out.println("The student was not registered");
+            System.out.println(
+                "The student was not registered, a student with that name already exists");
           }
         }
 
@@ -72,8 +73,7 @@ public class Client {
           System.out.println("\nEnter the increase in number of approved assignments: ");
           int increase = in.nextInt();
 
-          try {
-            main.findStudentWithName(name).increaseApprovedAssignments(increase);
+          if (main.findStudentWithName(name).increaseApprovedAssignments(increase)) {
             System.out.println(
                 "\nThe student "
                     + name
@@ -81,8 +81,8 @@ public class Client {
                     + main.findStudentWithName(name).getNumberOfApprovedAssignments()
                     + " approved assignments");
 
-          } catch (Exception e) {
-            System.out.println("\nThe student does not exist");
+          } else {
+            System.out.println("The increase did not happen. Maybe the student does not exist?");
           }
         }
 
