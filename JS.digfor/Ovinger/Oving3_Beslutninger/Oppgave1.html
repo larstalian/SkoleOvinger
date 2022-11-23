@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tall er gøy!</title>
+</head>
+<body>
+
+Skriv inn et tall
+<label for="number"></label><input id="number" name="number" type="text" value="">
+<br>
+<button onclick="clickHere()">Klikk her når du har skrevet tallet</button>
+<br>
+
+<div id="output"></div>
+
+</body>
+
+<script>
+    function clickHere() {
+        let number = document.getElementById("number").value;
+        let halfOfNumber = number / 2;
+        let doubleOfNumber = 2 * number
+        let tripleOfNumber = 3 * number;
+        document.getElementById("output").innerHTML = "Halvparten av tallet er " + halfOfNumber + ", det dobelte av tallet er " + doubleOfNumber + ", og det trippelte av tallet er " + tripleOfNumber;
+    }
+</script>
+</html>

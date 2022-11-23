@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+Hei, vennligst skriv inn din alder for å finne bilett til riktig pris
+<br>
+<label for="age"></label><input id="age" name="age" type="text" value="">
+<br>
+
+Skriv inn antall kilometer du skal reise
+<br>
+<label for="distance"></label><input id="distance" name="distance" type="text" value="">
+<br>
+<button onclick="clickHere()">Klikk her når du har skrevet alderen din</button>
+<br>
+
+<div id="output"></div>
+
+<script>
+    function clickHere() {
+        let price = 0;
+        let distance = document.getElementById("distance").value;
+        price = distance * 3.14;
+        let age = document.getElementById("age").value;
+        if (age < 12) {
+            price *= 0.5;
+        } else if (age > 67) {
+            price *= 0.75;
+        }
+        document.getElementById("output").innerHTML = "Billetten din koster " + price.toFixed(2) + " kroner";
+    }
+</script>
+
+</body>
+</html>
